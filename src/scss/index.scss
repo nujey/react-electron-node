@@ -1,0 +1,24 @@
+// html {
+//   font-size: calc(100vw / 3.75);
+// }
+// body {
+//   font-size: .14rem;
+// }
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+$primary-bg: #1790ff;
+.container {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  .sidebar {
+    width: 120px;
+    height: 100%;
+    background: $primary-bg;
+  }
+}
