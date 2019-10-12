@@ -3,14 +3,17 @@ import logo from './assets/images/logo.svg';
 import './App.css';
 import './scss/index.scss'
 
+import Sider from "./components/sideBar"
+
 import { directive } from '@babel/types';
+
 
 class App extends React.Component {
   render() {
     return (
       <div className="container">
         <section className="sidebar">
-          侧边导航栏
+          <Sider />
         </section>
         <section className="main">
           <header className="header">
