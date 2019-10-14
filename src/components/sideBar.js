@@ -38,23 +38,13 @@ class Sider extends Component {
   }
   render () {
     return (
-      <Menu
-        onClick={this.handleClick}
-        mode="inline"
-        theme="dark">
-          {/* <SubMenu
-            key="sub1"
-            title={
-              <span>111</span>
-            }>
-              <Menu.ItemGroup key="g1" title="Item 1">
-                <Menu.Item key='1'>option 1</Menu.Item>
-                <Menu.Item key='2'>option 2</Menu.Item>
-              </Menu.ItemGroup>
-          </SubMenu> */}
-          {this.siderBarList(menu)}
-      </Menu>
-      // 111
+      // <Menu
+      //   onClick={this.handleClick}
+      //   mode="inline"
+      //   theme="dark">
+      //     {this.siderBarList(menu)}
+      // </Menu>
+      111
     )
   }
 }

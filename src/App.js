@@ -1,32 +1,33 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
+import { Router } from 'react-router-dom'
 import './App.css';
 import './scss/index.scss'
 
-import Sider from "./components/sideBar"
+import Sider from "./components/sideBar.js"
 
-import { directive } from '@babel/types';
-
+import history from './utils/history'
 
 class App extends React.Component {
   render() {
     return (
-      <div className="container">
-        <section className="sidebar">
-          <Sider />
-        </section>
-        <section className="main">
-          <header className="header">
-            <span>你好啊，张小鹿</span>
-          </header>
-          <div className="wrapper">
-            context
-          </div>
-          <footer className="footer">
-            <span className="copyright">Copyright@2020 张小鹿</span>
-          </footer>
-        </section>
-      </div>
+      <Router history={history}>
+        <div className="container">
+          <section className="sidebar">
+            <Sider />
+          </section>
+          <section className="main">
+            <header className="header">
+              <span>你好啊，张小鹿</span>
+            </header>
+            <div className="wrapper">
+              context
+            </div>
+            <footer className="footer">
+              <span className="copyright">Copyright@2020 张小鹿</span>
+            </footer>
+          </section>
+        </div>
+      </Router>
     )
   }
 }
