@@ -1,33 +1,31 @@
 import React from 'react';
-import { Router } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import './App.css';
 import './scss/index.scss'
 
 import Sider from "./components/sideBar.js"
+import RouteConfig from './router/config'
 
-import history from './utils/history'
 
 class App extends React.Component {
   render() {
     return (
-      <Router history={history}>
-        <div className="container">
-          <section className="sidebar">
-            <Sider />
-          </section>
-          <section className="main">
-            <header className="header">
-              <span>你好啊，张小鹿</span>
-            </header>
-            <div className="wrapper">
-              context
-            </div>
-            <footer className="footer">
-              <span className="copyright">Copyright@2020 张小鹿</span>
-            </footer>
-          </section>
-        </div>
-      </Router>
+      <div className="container">
+        <section className="sidebar">
+          <Sider />
+        </section>
+        <section className="main">
+          <header className="header">
+            <span>你好啊，张小鹿</span>
+          </header>
+          <div className="wrapper">
+            <RouteConfig />
+          </div>
+          <footer className="footer">
+            <span className="copyright">Copyright@2020 张小鹿</span>
+          </footer>
+        </section>
+      </div>
     )
   }
 }

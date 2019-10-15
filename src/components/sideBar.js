@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Icon, Switch } from 'antd'
 
-import menu from '../router/config'
+import menu from './menus'
 
 const { SubMenu } = Menu
 // const Menu
@@ -38,13 +38,12 @@ class Sider extends Component {
   }
   render () {
     return (
-      // <Menu
-      //   onClick={this.handleClick}
-      //   mode="inline"
-      //   theme="dark">
-      //     {this.siderBarList(menu)}
-      // </Menu>
-      111
+      <Menu
+        onClick={this.handleClick}
+        mode="inline"
+        theme="dark">
+          {this.siderBarList(menu)}
+      </Menu>
     )
   }
 }
