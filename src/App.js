@@ -1,13 +1,11 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom'
 import './App.css';
 import './scss/index.scss'
 
 import Sider from "./components/sideBar.js"
 import RouteConfig from './router/config'
 
-
-class App extends React.Component {
+class LoginDom extends React.Component {
   render() {
     return (
       <div className="container">
@@ -29,25 +27,29 @@ class App extends React.Component {
     )
   }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+
+class LogoutDom extends React.Component{
+  render() {
+    return (
+      <div className="wrapper">
+        <RouteConfig />
+      </div>
+    )
+  }
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLogin: false
+    }
+  }
+  render() {
+    return (
+      this.state.isLogin ? <LoginDom/> : <LogoutDom/>
+    )
+  }
+}
 
 export default App;

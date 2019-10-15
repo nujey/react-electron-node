@@ -9,7 +9,7 @@ class RouteConfig extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/" exact={false} component={Home} />
+        <Route path="/" exact={true} component={Home} />
         <Route path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/404" component={Prim} />

@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
+  componentDidMount() {
+    console.log(this.props)
+  }
   render() {
     return (
       <div>
