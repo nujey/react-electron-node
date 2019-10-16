@@ -2,8 +2,11 @@ import React from 'react';
 import './App.css';
 import './scss/index.scss'
 
+import localStorage from './utils/localstorage'
+
 import Sider from "./components/sideBar.js"
 import RouteConfig from './router/config'
+
 
 class LoginDom extends React.Component {
   render() {
@@ -31,7 +34,7 @@ class LoginDom extends React.Component {
 class LogoutDom extends React.Component{
   render() {
     return (
-      <div className="wrapper">
+      <div className="main-content">
         <RouteConfig />
       </div>
     )
@@ -45,9 +48,16 @@ class App extends React.Component {
       isLogin: false
     }
   }
+  componentWillMount() {
+    localStorage.getItem('isLogin').then(res => {
+      this.setState({
+        isLogin: res
+      })
+    })
+  }
   render() {
     return (
-      this.state.isLogin ? <LoginDom/> : <LogoutDom/>
+      this.state.isLogin == '1' ? <LoginDom/> : <LogoutDom/>
     )
   }
 }
