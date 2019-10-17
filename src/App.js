@@ -21,7 +21,7 @@ class App extends React.Component {
         isLogin: res
       })
       if (res == 1) {
-        history.push('/index')
+        history.push('/index/work-list')
       }
     })
   }

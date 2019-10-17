@@ -12,7 +12,6 @@ class Home extends React.Component {
     console.log(this.props)
   }
   handleClick() {
-    console.log(111)
     localStorage.setItem('isLogin', 1)
     history.push('/index')
   }
