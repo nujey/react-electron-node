@@ -1,17 +1,17 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
 
-import App from '../App'
 import Login from "../views/home/login"
 import Home from '../views/home/home'
 import Prim from '../views/home/404'
+import HomeIndex from '../views/home/home-index'
 
 class RouteConfig extends React.Component {
   render() {
     return (
       <Switch>
-        {/* <Route path="/" exact={true} component={App} /> */}
-        <Route path="/home" component={Home} />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/index" component={HomeIndex} />
         <Route path="/login" component={Login} />
         <Route path="/404" component={Prim} />
       </Switch>

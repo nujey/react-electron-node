@@ -1,6 +1,17 @@
 import React from 'react'
 
-class MainWeb extends React.component {
+import history from '../../utils/history'
+import localStorage from '../../utils/localstorage'
+
+import Sider from "../../components/sideBar.js"
+
+class MainWeb extends React.Component {
+  handleLogout = () => {
+    if (localStorage.getItem('isLogin', true) === 1) {
+      localStorage.setItem('isLogin', 0)
+      history.push('/')
+    }
+  }
   render() {
     return (
       <div className="container">
@@ -13,7 +24,7 @@ class MainWeb extends React.component {
             <span onClick={this.handleLogout}>退出登录</span>
           </header>
           <div className="wrapper">
-            <RouteConfig />
+            {/* <RouteConfig /> */}
           </div>
           <footer className="footer">
             <span className="copyright">Copyright@2020 张小鹿</span>
