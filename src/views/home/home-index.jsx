@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import history from '../../utils/history'
+// import history from '../../utils/history'
 import localStorage from '../../utils/localstorage'
 
 import Sider from "../../components/sideBar.js"
@@ -12,7 +12,7 @@ class MainWeb extends React.Component {
   handleLogout = () => {
     if (localStorage.getItem('isLogin', true) === 1) {
       localStorage.setItem('isLogin', 0)
-      history.push('/')
+      this.props.history.push('/')
     }
   }
   render() {

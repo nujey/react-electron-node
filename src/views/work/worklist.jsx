@@ -4,13 +4,25 @@ import { Table, Divider, Tag, Pagination } from 'antd'
 import './work.scss'
 
 class WorkList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      colorStatus: false
+    }
+  }
+  componentDidMount() {
+    console.log(this.props)
+  }
+  handleItem(obj) {
+    this.props.history.push({ state: { a: 'a'}, pathname: '/index/work-detail', query: {...obj}})
+  }
   render() {
     const colums = [
       {
         title: '名字',
         dataIndex: 'name',
         key: 'name',
-        render: text => <a>{text}</a>
+        render: text => <a style={{color: this.state.colorStatus ? '#f00': 'blue'}}>{text}</a>
       },
       {
         title: '年龄',
@@ -44,9 +56,9 @@ class WorkList extends React.Component {
         title: '操作',
         dataIndex: 'action',
         key: 'action',
-        render: (text, record) => (
+        render: (text, record, index) => (
           <span>
-            <a>{record.name}</a>
+            <a onClick={this.handleItem.bind(this, {index, record, text})}>{record.name}</a>
             <Divider type="vertical"/>
             <a>删除</a>
           </span>
@@ -87,7 +99,7 @@ class WorkList extends React.Component {
             defaultCurrent={3}
             total={100}
           />
-          
+
         </div>
       </div>
     )
