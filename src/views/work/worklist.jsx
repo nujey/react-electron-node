@@ -10,8 +10,11 @@ class WorkList extends React.Component {
       colorStatus: false
     }
   }
+  componentWillMount() {
+    console.log(this.props, 111)
+  }
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props, 222)
   }
   handleItem(obj) {
     this.props.history.push({ state: { a: 'a'}, pathname: '/index/work-detail', query: {...obj}})
@@ -92,14 +95,12 @@ class WorkList extends React.Component {
       <div className="main-list">
         <Table columns={colums} dataSource={data} pagination={false}/>
         <div className="page">
-
           <Pagination
             showSizeChanger
             onShowSizeChange={this.onShowSizeChange}
             defaultCurrent={3}
             total={100}
           />
-
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Pagination } from 'antd'
+import Page from '../../components/pagination'
 
 class WorkDetail extends React.Component {
   onShowSizeChange = () => {
@@ -9,12 +9,7 @@ class WorkDetail extends React.Component {
   render() {
     return (
       <div>
-        <Pagination
-          showSizeChanger
-          onShowSizeChange={this.onShowSizeChange}
-          defaultCurrent={3}
-          total={500}
-        />
+        <Page total={50}/>
       </div>
     )
   }
