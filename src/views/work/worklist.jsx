@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Table, Divider, Tag, Pagination } from 'antd'
 import './work.scss'
@@ -94,6 +95,9 @@ class WorkList extends React.Component {
     return (
       <div className="main-list">
         <Table columns={colums} dataSource={data} pagination={false}/>
+        <div>
+          <Link to="/index/hooks-glance">去Hooks</Link>
+        </div>
         <div className="page">
           <Pagination
             showSizeChanger

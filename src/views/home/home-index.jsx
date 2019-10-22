@@ -6,7 +6,7 @@ import localStorage from '../../utils/localstorage'
 
 import Sider from "../../components/sideBar.js"
 import { WorkRoute }  from '../../router/work'
-import { relative } from 'path'
+import HooksRoute from '../../router/Hooks'
 
 class MainWeb extends React.Component {
   handleLogout = () => {
@@ -33,6 +33,7 @@ class MainWeb extends React.Component {
           </header>
           <div className="wrapper" style={wrapperStyle}>
             <WorkRoute />
+            <HooksRoute />
           </div>
           <footer className="footer">
             <span className="copyright">Copyright@2020 张小鹿</span>
