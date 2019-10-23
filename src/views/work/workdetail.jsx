@@ -4,7 +4,7 @@ import Page from '../../components/pagination'
 
 class WorkDetail extends React.Component {
   onShowSizeChange = () => {
-
+    
   }
   render() {
     return (

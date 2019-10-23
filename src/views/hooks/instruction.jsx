@@ -12,6 +12,13 @@ class HookOne extends React.Component {
 
         <p>Hooks 是一项新功能提案，可让您在不编写类的情况下使用 state(状态) 和其他 React 功能</p>
         
+        <p className="main-instruction">
+          Hooks是一种函数 函数允许从函数式组件中 【勾住hook into】React状态和生命周期的功能
+          Hooks在类内部不起作用 允许无需类就可以使用React
+
+          React提供了许多的内置Hook，当然我们可以创建自己的Hook以在不同的组件之间重用有状态的行为
+
+        </p>
       </div>
     )
   }

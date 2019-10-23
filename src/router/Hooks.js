@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
 
-import HooksExample from '../views/hooks/glanceHooks'
+import {HooksExample} from '../views/hooks/glanceHooks'
 
 class HooksRoute extends React.Component {
   render() {
