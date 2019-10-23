@@ -24,7 +24,7 @@ function HooksExample() {
   )
 }
 
-function FriendStatus(props) {
+function FriendStatus1(props) {
   const [isOnline, setIsOnline] = useState(null)
 
   function handleStatusChange(status) {
@@ -51,7 +51,7 @@ function useFriendStatus(friendID) {
   function handleStatusChange(status) {
     setIsOnline(status.isOnline)
   }
-
+  const ChatAPI = null
   useEffect(() => {
     ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange)
     return () => {
