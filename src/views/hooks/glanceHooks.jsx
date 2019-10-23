@@ -44,5 +44,38 @@ function FriendStatus(props) {
   return isOnline ? 'onLine' : 'offLine'
 }
 
+// 自定义Hooks
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null)
 
-export{ HooksExample, FriendStatus }
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline)
+  }
+
+  useEffect(() => {
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange)
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange)
+    }
+  })
+  return isOnline
+}
+
+function FriendStatus (props) {
+  const isOnline = useFriendStatus(props.friend.id)
+  if (isOnline === null) {
+    return 'Loading'
+  }
+  return isOnline ? 'onLine' : 'offLine'
+}
+
+function FriendListItem(props) {
+  const isOnline = useFriendStatus(props.friend.id)
+
+  return (
+    <li style={{ color: isOnline ? 'green': 'reed'}}>
+      {props.friend.name}
+    </li>
+  )
+}
+export{ HooksExample, FriendStatus, FriendListItem }
