@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 function HooksExample() {
+  // 声明一个state状态变量 useState 提供和使用了在类中this.state完全相同功能的新方法
+  // 当函数退出的时候 变量就会销毁 但是React会保留state状态变量
   const [count, setCount] = useState(0)
 
   // 声明多个state(状态)变量
@@ -78,4 +80,15 @@ function FriendListItem(props) {
     </li>
   )
 }
+
+class ExampleHooks extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+  }
+
+}
+
 export{ HooksExample, FriendStatus, FriendListItem }
