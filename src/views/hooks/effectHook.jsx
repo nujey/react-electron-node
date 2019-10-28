@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 
 
+// 不要在循环，条件或嵌套函数中调用 Hook 
+// 总是在 React 函数的顶层使用 Hooks
+
+
+// 不要在常规 JavaScript 函数中调用 Hook 
+// 在 React 函数式组件中调用 Hooks 。
+// 从自定义 Hooks 调用 Hooks 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null)
 
