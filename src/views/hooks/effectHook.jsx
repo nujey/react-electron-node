@@ -33,7 +33,9 @@ function Form () {
   const [name, setName] = useState('Mary')
 
   useEffect(function persistForm() {
-    localStorage.setItem('formData', name)
+    if (name !== '') {
+      localStorage.setItem('formData', name)
+    }
   })
 
   const [surname, setSurname] = useState('Poppins')

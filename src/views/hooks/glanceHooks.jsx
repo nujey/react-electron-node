@@ -88,7 +88,7 @@ class ExampleHooks extends React.Component {
       count: 0
     }
   }
-
 }
+
 
 export{ HooksExample, FriendStatus, FriendListItem }
