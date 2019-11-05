@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function FunState() {
   const [count, setCount] = useState(0)
@@ -11,4 +11,13 @@ function FunState() {
       <button onClick={() => setCount(prevCount => prevCount - 1)}></button>
     </>
   )
+}
+
+function FunEffect(props) {
+  useEffect(() => {
+    const subscription = props.source.subscribe()
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [props.source])
 }
