@@ -56,5 +56,14 @@ function Counter({ initialState }) {
 
 function TextInputWithFocusButton() {
   const inputEl = useref(null)
-  
+  const onButtonClick = () => {
+    inputEl.current.focus()
+  }
+
+  return (
+    <div>
+      <input type="text" ref={inputEl}/>
+      <button onClick={onButtonClick}></button>
+    </div>
+  )
 }

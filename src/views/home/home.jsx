@@ -27,7 +27,6 @@ class Home extends React.Component {
           <div className="login-box">
             <h3>欢迎来到血小板实验室</h3>
             <Link to={{ pathname: '/index/work-list'}}  className="login-btn" onClick={this.handleClick}>登录</Link>
-            {/* <a href="" onClick={this.handleClick}>登录</a> */}
           </div>
         </div>
       </div>
