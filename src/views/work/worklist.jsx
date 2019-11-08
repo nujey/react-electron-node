@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Table, Divider, Tag, Pagination } from 'antd'
+import ExportBtn from '../../components/export-btn'
+
 import './work.scss'
 
 class WorkList extends React.Component {
@@ -92,8 +94,16 @@ class WorkList extends React.Component {
         tags: ['winner', 'cool', 'teacher']
       }
     ]
+    const map = {
+      'name': '名字',
+      'idcardNumber': '身份证号',
+      'startTime': '开始时间'
+    }
     return (
       <div className="main-list">
+        <div>
+          <ExportBtn mapList={map} exportName='用户列表'/>
+        </div>
         <Table columns={colums} dataSource={data} pagination={false}/>
         <div>
           <Link to="/index/hooks-glance">去Hooks</Link>
