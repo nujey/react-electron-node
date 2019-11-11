@@ -20,9 +20,8 @@ function ExportBtn(props) {
   const [mapList, setMapList] = useState([])
 
   const changeData = (list) => {
-    const res = []
     const tempMap = []
-    const tempArr = list.map((item, index) => {
+    list.map((item, index) => {
       tempMap[index] = {}
       for(let mapItem in props.mapList) {
         if (props.mapList[mapItem] !== undefined) {
