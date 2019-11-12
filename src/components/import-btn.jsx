@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
-
-import { Button } from 'antd'
 
 function ImportBtn(props) {
   const [mapList, setMapList] = useState([])
@@ -11,7 +8,10 @@ function ImportBtn(props) {
   }
   return(
     <>
-      <Button type="primary" onClick={handleImport}>导入</Button>
+      <label for="fileSelect" class="el-button el-button--primary el-button--small">
+        <i class="el-icon-baikal-daochu"></i><span>导入</span>
+      </label>
+      <input ref="fileUpload" onChange={handleImport} type="file" style="display: none;" name="fileSelect" id="fileSelect"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
     </>
   )
 }

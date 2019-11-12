@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Table, Divider, Tag, Pagination } from 'antd'
 import ExportBtn from '../../components/export-btn'
+import ImportBtn from '../../components/import-btn'
 
 import './work.scss'
 
@@ -103,6 +104,7 @@ class WorkList extends React.Component {
       <div className="main-list">
         <div>
           <ExportBtn mapList={map} exportName='用户列表'/>
+          <ImportBtn />
         </div>
         <Table columns={colums} dataSource={data} pagination={false}/>
         <div>
