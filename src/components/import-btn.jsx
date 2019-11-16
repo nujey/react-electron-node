@@ -6,21 +6,22 @@ import XLSX from 'xlsx'
 function ImportBtn(props) {
   const [mapList, setMapList] = useState([])
   const handleImport = (e) => {
-    // console.log(e.target)
     let { files } = e.target
-
+    
     const fileReader = new FileReader()
     fileReader.onload = event => {
-      console.log(event)
       try {
         const { result } = event.target
         const workbook = XLSX.read(result, { type: 'binary' })
+        let xlsxSrc = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
         let data = []
-        for (const sheet in workbook.Sheets) {
-          if (workbook.Sheets.hasOwnProperty(sheet)) {
-            data = data.concat(XLSX.utils.sheet_add_json(workbook.Sheets[sheet]))
+        xlsxSrc.map(item => {
+          let temp = {}
+          for (let attr in props.mapList) {
+            temp[attr] = item[props.mapList[attr]]
           }
-        }
+          data.push(temp)
+        })
         console.log(data)
       } catch(e) {
         console.log(e, 'catch')

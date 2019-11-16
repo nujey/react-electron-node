@@ -104,7 +104,7 @@ class WorkList extends React.Component {
       <div className="main-list">
         <div>
           <ExportBtn mapList={map} exportName='用户列表'/>
-          <ImportBtn />
+          <ImportBtn mapList={map}/>
         </div>
         <Table columns={colums} dataSource={data} pagination={false}/>
         <div>
