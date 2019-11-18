@@ -9,7 +9,7 @@ class Page extends React.Component {
   render() {
     return (
       <div>
-        <Pagination 
+        <Pagination
           showQuickJumper
           showSizeChanger
           size={this.props.size ? this.props.size : 'small'}
