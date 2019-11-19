@@ -14,12 +14,6 @@ class WorkList extends React.Component {
       colorStatus: false
     }
   }
-  componentWillMount() {
-    console.log(this.props, 111)
-  }
-  componentDidMount() {
-    console.log(this.props, 222)
-  }
   handleItem(obj) {
     this.props.history.push({ state: { a: 'a'}, pathname: '/index/work-detail', query: {...obj}})
   }
