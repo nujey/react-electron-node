@@ -22,8 +22,8 @@ app.use(cors({
 }));
 
 router.get('/api/login', async ctx => {
-  const obj = {a: 'aaa', b: 'bbb'}
-  ctx.body = obj
+  // const obj = {a: 'aaa', b: 'bbb'}
+  ctx.body = '恭喜你，憨憨'
 })
 
 

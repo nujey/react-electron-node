@@ -14,9 +14,11 @@ class Home extends React.Component {
   handleClick(e) {
     e.preventDefault()
     // localStorage.setItem('isLogin', 1)
-    const response = fetch('http://localhost:3000/api/login').then(res => res.text())
-    // const result = response.json()
-    console.log(response)
+    fetch('http://localhost:3000/api/login')
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+      })
 
     // history.push({state: { a: 'a'}, pathname: '/index/work-list', query: { id: 'list'}})
   }
