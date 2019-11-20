@@ -14,7 +14,7 @@ class Home extends React.Component {
   handleClick(e) {
     e.preventDefault()
     // localStorage.setItem('isLogin', 1)
-    fetch('http://localhost:9090/api/login')
+    fetch('http://localhost:9090/user/api/login')
       .then(response => response.json())
       .then(result => {
         console.log(result)
@@ -28,7 +28,7 @@ class Home extends React.Component {
       name: 'cc',
       age: 25
     }
-    fetch('http://localhost:9090/api/removeItem', {
+    fetch('http://localhost:9090/user/api/removeItem', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
