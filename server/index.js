@@ -16,7 +16,7 @@ app.use(cors({
     return 'http://localhost:3000'
   },
   exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-  maxAge: 5,
+  maxAge: 600,
   credentials: true,
   allowedMethods: ['GET', 'POST', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept']
@@ -28,7 +28,7 @@ router.get('/api/login', async ctx => {
 })
 
 router.post('/api/removeItem', async (ctx, next) => {
-  console.log(ctx)
+  console.log(ctx.request)
   ctx.body = 'aaa'
 })
 

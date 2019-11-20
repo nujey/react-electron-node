@@ -32,7 +32,8 @@ class Home extends React.Component {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/json; charset=UTF-8",
+        "type": "app"
       }
     }).then(response => response.json())
     .then(result => {
@@ -49,7 +50,7 @@ class Home extends React.Component {
         <div className="image-bg opacity-box">
           <div className="login-box">
             <h3>欢迎来到血小板实验室</h3>
-            <a  className="login-btn" onClick={this.handleClick}>登录</a>
+            <a  className="login-btn" onClick={this.handlePost}>登录</a>
           </div>
         </div>
       </div>
