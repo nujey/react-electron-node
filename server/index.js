@@ -6,6 +6,7 @@ const fs = require('fs')
 
 const app = new Koa()
 const router = new Router()
+const bodyParser = require('koa-bodyparser')
 
 app.use(cors({
   origin: function(ctx) {
@@ -22,10 +23,16 @@ app.use(cors({
 }));
 
 router.get('/api/login', async ctx => {
-  // const obj = {a: 'aaa', b: 'bbb'}
-  ctx.body = '恭喜你，憨憨'
+  const obj = {a: 'aaa', b: 'bbb'}
+  ctx.body = obj
 })
 
+router.post('/api/removeItem', async (ctx, next) => {
+  console.log(ctx)
+  ctx.body = 'aaa'
+})
+
+app.use(bodyParser())
 
 app.use(router.routes()).use(router.allowedMethods())
 // app.use((ctx, next) => {

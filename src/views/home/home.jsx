@@ -14,13 +14,30 @@ class Home extends React.Component {
   handleClick(e) {
     e.preventDefault()
     // localStorage.setItem('isLogin', 1)
-    fetch('http://localhost:3000/api/login')
+    fetch('http://localhost:9090/api/login')
       .then(response => response.json())
       .then(result => {
         console.log(result)
+        // this.handlePost()
       })
 
     // history.push({state: { a: 'a'}, pathname: '/index/work-list', query: { id: 'list'}})
+  }
+  handlePost = () => {
+    const data = {
+      name: 'cc',
+      age: 25
+    }
+    fetch('http://localhost:9090/api/removeItem', {
+      method: 'post',
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then(response => response.json())
+    .then(result => {
+      console.log(result)
+    })
   }
   render() {
     // const urlQuery = {
