@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Input } from 'antd'
 
 import bgImg from '../../assets/images/home.jpg'
 import "./home.scss"
@@ -14,7 +15,7 @@ class Home extends React.Component {
   handleClick(e) {
     e.preventDefault()
     // localStorage.setItem('isLogin', 1)
-    fetch('http://localhost:9090/user/api/login')
+    fetch('http://localhost:9090/user/login')
       .then(response => response.json())
       .then(result => {
         console.log(result)
@@ -28,7 +29,7 @@ class Home extends React.Component {
       name: 'cc',
       age: 25
     }
-    fetch('http://localhost:9090/user/api/removeItem', {
+    fetch('http://localhost:9090/user/removeUser', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -50,7 +51,8 @@ class Home extends React.Component {
         <div className="image-bg opacity-box">
           <div className="login-box">
             <h3>欢迎来到血小板实验室</h3>
-            <a  className="login-btn" onClick={this.handlePost}>登录</a>
+
+            <a  className="login-btn" onClick={this.handleClick}>登录</a>
           </div>
         </div>
       </div>

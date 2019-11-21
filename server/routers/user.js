@@ -4,14 +4,10 @@
  */
 
  const router = require('koa-router')()
-//  const admin = require()
+ const user = require("../controllers/user")
 
-const routers = router.get('/api/login', async ctx => {
-  const obj = {a: 'aaa', b: 'bbb'}
-  ctx.body = obj
-}).post('/api/removeItem', async (ctx, next) => {
-  console.log(ctx.request)
-  ctx.body = 'aaa'
-})
+const routers = router
+  .get('/login', user.loginIn)
+  .post('/removeUser', user.removeUser)
 
 module.exports = routers

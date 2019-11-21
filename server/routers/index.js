@@ -6,7 +6,6 @@
 
  const user = require('./user')
 //  const work = require('./work')
-console.log(user)
 
  router.use('/user', user.routes(), user.allowedMethods())
 
