@@ -30,8 +30,14 @@
       width: 100%;
       font-size: 24px;
     }
-    .login-btn {
+    .login-form {
+      padding: 0 100px;
       font-size: 16px;
+    }
+    .button-groups {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
     }
   }
 }

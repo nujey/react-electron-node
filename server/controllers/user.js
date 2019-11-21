@@ -12,7 +12,15 @@ module.exports = {
       message: '',
       status: false
     }
-    console.log(ctx)
+    const { username, passward } = ctx.request.query
+    
+    if (username !== 'admin' || passward !== '123456') {
+      result.code = 102
+      result.message = '登录名或者密码错误'
+    } else {
+      result.message = '登录成功'
+      result.status = true
+    }
     ctx.body = result
   },
   async removeUser(ctx) {
