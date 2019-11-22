@@ -12,8 +12,8 @@ class MainWeb extends React.Component {
   handleLogout = () => {
     if (localStorage.getItem('isLogin', true) === 1) {
       localStorage.setItem('isLogin', 0)
-      this.props.history.push('/')
     }
+    this.props.history.push('/')
   }
   render() {
     const wrapperStyle = {

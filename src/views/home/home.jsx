@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Icon, Input, Button } from 'antd'
+import { Form, Icon, Input, Button, message } from 'antd'
 
 import bgImg from '../../assets/images/home.jpg'
 import "./home.scss"
@@ -53,10 +53,16 @@ class LoginFormTemplate extends React.Component {
       fetch(`http://localhost:9090/user/login?username=${values.username}&passward=${values.passward}`)
         .then(response => response.json())
         .then(result => {
-          console.log(result)
+          if (result.code === 200) {
+            history.push({ pathname: '/index/work-list' })
+          } else {
+            message.error('账号名或者密码错误', 3, () => { console.log('close')})
+          }
         })
     })
-        // history.push({state: { a: 'a'}, pathname: '/index/work-list', query: { id: 'list'}})
+  }
+  handleRegister = () => {
+    history.push({pathname: '/register', query: { id: 'list'}, state: { a: 'a' }})
   }
   render() {
     const { getFieldDecorator } = this.props.form
@@ -80,7 +86,7 @@ class LoginFormTemplate extends React.Component {
         <Form.Item>
           <div className="button-groups">
             <Button type="primary" htmlType="submit">登录</Button>
-            <Button type="dashed" htmlType="button">注册</Button>
+            <Button type="dashed" htmlType="button" onClick={this.handleRegister}>注册</Button>
           </div>
         </Form.Item>
       </Form>
