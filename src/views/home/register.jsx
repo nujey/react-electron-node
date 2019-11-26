@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Cascader, Checkbox, Button } from 'antd'
+import axios from 'axios'
 
 import './register.scss'
 
@@ -68,6 +69,11 @@ class RegisterTemplate extends React.Component {
         }).then(response => response.json())
         .then(result => {
           console.log(result)
+        })
+        axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
+          console.log(res, 111)
+        }).catch(err => {
+          console.log(err)
         })
       }
     })
