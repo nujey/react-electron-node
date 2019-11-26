@@ -32,12 +32,45 @@ class RegisterTemplate extends React.Component {
     confirmDirty: false
   }
   validateToNextPassword = (rule, value, callback) => {
-    console.log(value)
     const { form } = this.props
     if (value && this.state.confirmDirty) {
       form.validateFields(['confirm'], { force: true })
     }
     callback()
+  }
+  validateAgreement = (rule, value, callback) => {
+    const { form } = this.props
+    if(value !== true) {
+      callback('请同意协议啊！！！')
+    }
+    callback()
+  }
+  handleSubmit = e => {
+    e.preventDefault()
+    const { validateFields } = this.props.form
+    validateFields((errors, values) => {
+      if (errors) {
+        // console.log(errors)
+      } else {
+        console.log(values)
+        const parmas = {
+          username: values.username,
+          password: values.password,
+          address: values.address
+        }
+        fetch('http://localhost:9090/user/removeUser', {
+          method: 'post',
+          headers: {
+            "Content-type": "application/json;charset=UTF-8",
+            "type": "app"
+          },
+          body: JSON.stringify(parmas)
+        }).then(response => response.json())
+        .then(result => {
+          console.log(result)
+        })
+      }
+    })
   }
   render() {
     const { getFieldDecorator } = this.props.form
@@ -56,7 +89,7 @@ class RegisterTemplate extends React.Component {
     return (
       <div className="regitser-template">
         <h3 className="regitser-title">注册</h3>
-        <Form className="form">
+        <Form className="form" onSubmit={this.handleSubmit}>
           <Form.Item label="用户名" className="self-form-item">
             {getFieldDecorator('username', {
               rules: [{ required: true, message: '请输入用户名' }]
@@ -64,7 +97,7 @@ class RegisterTemplate extends React.Component {
           </Form.Item>
           <Form.Item label="密码" className="self-form-item">
             {getFieldDecorator('password', {
-              rules: [{ required: true, message: '请输入密码' },
+              rules: [{ required: true, min: 6,  message: '请输入密码' },
                       { validator: this.validateToNextPassword }]
             })(<Input.Password placeholder="请输入密码"/>)}
           </Form.Item>
@@ -77,6 +110,8 @@ class RegisterTemplate extends React.Component {
           <Form.Item {...tailFormItemLayout}>
             {getFieldDecorator('agreement', {
               valuePropName: 'checked',
+              rules: [{ required: true, message: '请先阅读并同意用户协议' },
+                      { validator: this.validateAgreement }]
             })(
               <Checkbox>
                 请阅读并同意<a href="#">闪电协议</a>

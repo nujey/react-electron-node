@@ -10,23 +10,6 @@ import localStorage from '../../utils/localstorage'
 import FormItem from 'antd/lib/form/FormItem'
 
 class Home extends React.Component {
-  handlePost = () => {
-    const data = {
-      name: 'cc',
-      age: 25
-    }
-    fetch('http://localhost:9090/user/removeUser', {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "type": "app"
-      }
-    }).then(response => response.json())
-    .then(result => {
-      console.log(result)
-    })
-  }
   render() {
     return (
       <div className="main-content">
