@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Cascader, Checkbox, Button } from 'antd'
+import { Form, Input, Cascader, Checkbox, Button, message } from 'antd'
 import axios from 'axios'
 
 import './register.scss'
@@ -48,6 +48,8 @@ class RegisterTemplate extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault()
+    console.log(this.props.history)
+    this.props.history.push('/')
     const { validateFields } = this.props.form
     validateFields((errors, values) => {
       if (errors) {
@@ -68,13 +70,16 @@ class RegisterTemplate extends React.Component {
           body: JSON.stringify(parmas)
         }).then(response => response.json())
         .then(result => {
-          console.log(result)
+          if(result.code === 200) {
+            message.success('注册成功')
+            // history
+          }
         })
-        axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
-          console.log(res, 111)
-        }).catch(err => {
-          console.log(err)
-        })
+        // axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
+        //   console.log(res, 111)
+        // }).catch(err => {
+        //   console.log(err)
+        // })
       }
     })
   }
