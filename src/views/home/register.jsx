@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Cascader, Checkbox, Button, message } from 'antd'
 import axios from 'axios'
+import { withRouter } from 'react-router'
 
 import './register.scss'
 
@@ -27,6 +28,7 @@ const addressMap = [{
   }]
 }]
 
+// @withRouter
 
 class RegisterTemplate extends React.Component {
   state = {
@@ -48,8 +50,6 @@ class RegisterTemplate extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log(this.props.history)
-    this.props.history.push('/')
     const { validateFields } = this.props.form
     validateFields((errors, values) => {
       if (errors) {
@@ -72,7 +72,7 @@ class RegisterTemplate extends React.Component {
         .then(result => {
           if(result.code === 200) {
             message.success('注册成功')
-            // history
+            this.props.history.push('/')
           }
         })
         // axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
@@ -142,4 +142,6 @@ class RegisterTemplate extends React.Component {
 
 const RegisterPage = Form.create()(RegisterTemplate)
 
-export default RegisterPage
+export default withRouter(RegisterPage)
+
+// export default RegisterTemplate

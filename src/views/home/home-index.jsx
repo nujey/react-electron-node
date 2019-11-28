@@ -10,6 +10,7 @@ import HooksRoute from '../../router/Hooks'
 
 class MainWeb extends React.Component {
   handleLogout = () => {
+    // console.log(this.props)
     if (localStorage.getItem('isLogin', true) === 1) {
       localStorage.setItem('isLogin', 0)
     }
