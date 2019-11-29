@@ -23,6 +23,9 @@ module.exports = {
     }
     ctx.body = result
   },
+  /**
+   * 注销用户
+   */
   async removeUser(ctx) {
     let formData = ctx.request.body
     let result = {
