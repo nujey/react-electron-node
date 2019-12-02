@@ -1,5 +1,5 @@
 const fs = require('fs')
-// const walkFile = require('./walk-file')
+const walkFile = require('./walk-file')
 
 /**
  * 获取sql目录下的文件目录数据
@@ -18,7 +18,8 @@ function getSqlMap() {
   basePath = pathArr.join('/') + '/sql/'
   console.log(basePath, 555)
   
-  // let fileList = walkFile(basePath, 'sql')
+  let fileList = walkFile(basePath, 'sql')
+  console.log(fileList)
   // return fileList
 }
 
