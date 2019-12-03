@@ -14,7 +14,7 @@ const eventLog = function(err, sqlFile, index) {
 // 获取所有sql脚本内容
 let sqlContentMap = getSqlContentMap()
 
-console.log(sqlContentMap)
+console.log(sqlContentMap, '获取到的sql脚本内容')
 
 const createAllTables = async () => {
   for (let key in sqlContentMap) {
@@ -34,5 +34,7 @@ const createAllTables = async () => {
   }
   console.log('sql脚本执行结束')
 }
+
+createAllTables()
 
 module.exports = createAllTables

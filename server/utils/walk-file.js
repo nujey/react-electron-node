@@ -7,17 +7,19 @@ const fs = require('fs')
  * @return {object} 返回遍历后的目录结果
  */
 const walkFile = function(pathSolve, mime) {
-  let files = fs.readdirFileSync(pathSolve)
+  let files = fs.readdirSync(pathSolve)
+
   const fileList = {}
   for(let [i, item] of files.entries()) {
     let itemArr = item.split('\.')
 
     let itemMime = (itemArr.length > 1) ? itemArr[itemArr.length -1] : undefined
-    let keyName = item + '';
+    // let keyName = item + '';
     if (mime === itemMime) {
-      files[item] = pathSolve + 'item'
+      fileList[item] = pathSolve + item
     }
   }
+
   return fileList
 }
 

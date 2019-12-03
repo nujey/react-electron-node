@@ -8,22 +8,16 @@ const walkFile = require('./walk-file')
 
 function getSqlMap() {
   let basePath = __dirname
-  console.log(basePath, 111)
   basePath = basePath.replace(/\\/g, '\/')
-  console.log(basePath, 222)
   let pathArr = basePath.split('\/')
-  console.log(pathArr, 333)
   pathArr = pathArr.splice(0, pathArr.length - 1)
-  console.log(pathArr, 444)
   basePath = pathArr.join('/') + '/sql/'
-  console.log(basePath, 555)
   
   let fileList = walkFile(basePath, 'sql')
-  console.log(fileList)
-  // return fileList
+  console.log(fileList, '获取到的sql目录吓的文件数据')
+  return fileList
 }
 
- getSqlMap()
+//  getSqlMap()
 
  module.exports = getSqlMap
-

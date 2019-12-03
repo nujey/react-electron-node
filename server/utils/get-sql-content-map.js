@@ -27,8 +27,9 @@ let sqlContentMap = {}
    for (let key in sqlMap) {
      getSqlContent(key, sqlMap[key])
    }
+
    return sqlContentMap
  }
-
+ 
  module.exports = getSqlContentMap
  
