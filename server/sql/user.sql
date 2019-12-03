@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` set email='1064726563@qq.com', password='123456'
+INSERT INTO `user` set email='1064726563@qq.com', password=password('123456')
