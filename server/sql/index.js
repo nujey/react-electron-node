@@ -35,6 +35,6 @@ const createAllTables = async () => {
   console.log('sql脚本执行结束')
 }
 
-createAllTables()
+// createAllTables()
 
 module.exports = createAllTables

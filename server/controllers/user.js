@@ -1,3 +1,5 @@
+const { query } = require('../utils/db')
+
 /**
  * 用户中心接口 业务逻辑
  */
@@ -12,15 +14,16 @@ module.exports = {
       message: '',
       status: false
     }
-    const { username, passward } = ctx.request.query
-    
-    if (username !== 'admin' || passward !== '123456') {
-      result.code = 102
-      result.message = '登录名或者密码错误'
-    } else {
-      result.message = '登录成功'
-      result.status = true
-    }
+    const { username, password } = ctx.request.query
+    result.result = await query(`SELECT * FROM user WHERE email='${username}' AND password=password('${password}');`)
+
+    // if (username !== 'admin' || passward !== '123456') {
+    //   result.code = 102
+    //   result.message = '登录名或者密码错误'
+    // } else {
+    //   result.message = '登录成功'
+    //   result.status = true
+    // }
     ctx.body = result
   },
   /**

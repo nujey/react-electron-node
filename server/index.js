@@ -1,7 +1,7 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa-cors')
-
+const createAllTables = require('./sql/index')
 const routers = require('./routers/index')
 const app = new Koa()
 
@@ -21,6 +21,8 @@ app.use(cors({
 
 app.use(bodyParser())
 
+// 执行脚本文件
+createAllTables()
 app.use(routers.routes()).use(routers.allowedMethods())
 
 app.listen(9090)
