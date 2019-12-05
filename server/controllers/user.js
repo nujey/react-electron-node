@@ -15,15 +15,17 @@ module.exports = {
       status: false
     }
     const { username, password } = ctx.request.query
-    result.result = await query(`SELECT * FROM user WHERE email='${username}' AND password=password('${password}');`)
-
-    // if (username !== 'admin' || passward !== '123456') {
-    //   result.code = 102
-    //   result.message = '登录名或者密码错误'
-    // } else {
-    //   result.message = '登录成功'
-    //   result.status = true
-    // }
+    await query(`SELECT * FROM user WHERE email='${username}' AND password=password('${password}');`).then(res => {
+      if (res.length === 0) {
+        result.code = 1005
+        result.message = '用户不存在'
+      } else {
+        result.result = res
+      }
+    }).catch(err => {
+      result.code = 1004
+      result.message = '查询出错'
+    })
     ctx.body = result
   },
   /**
@@ -36,7 +38,21 @@ module.exports = {
       message: '',
       status: false
     }
-    console.log(formData)
+    const address = JSON.stringify({
+      address: formData.address
+    })
+    // INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));
+
+    // INSERT INTO user_data(address) VALUES ('${address}');
+    // ALTER TABLE user_data ADD address VARCHAR(200) after id;
+    const sql = `INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));
+                 INSERT INTO user_data(address) VALUES ('${address}');`
+    await query(sql).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+    // console.log(formData)
     ctx.body = result
   }
 }

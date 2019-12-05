@@ -39,7 +39,7 @@ class LoginFormTemplate extends React.Component {
           if (result.code === 200) {
             history.push({ pathname: '/index/work-list' })
           } else {
-            message.error('账号名或者密码错误', 3, () => { console.log('close')})
+            message.error(result.message, 3, () => { console.log('close')})
           }
         })
     })
