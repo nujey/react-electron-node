@@ -44,7 +44,7 @@ module.exports = {
     // INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));
 
     // INSERT INTO user_data(address) VALUES ('${address}');
-    // ALTER TABLE user_data ADD address VARCHAR(200) after id;
+    // ALTER TABLE us  er_data ADD address VARCHAR(200) after id;
     const sql = `INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));
                  INSERT INTO user_data(address) VALUES ('${address}');`
     await query(sql).then(res => {
