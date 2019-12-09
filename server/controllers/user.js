@@ -15,7 +15,7 @@ module.exports = {
       status: false
     }
     const { username, password } = ctx.request.query
-    await query(`SELECT * FROM user WHERE email='${username}' AND password=password('${password}');`).then(res => {
+    await query(`SELECT * FROM user WHERE name='${username}' AND password=password('${password}');`).then(res => {
       if (res.length === 0) {
         result.code = 1005
         result.message = '用户不存在'
@@ -45,10 +45,10 @@ module.exports = {
 
     // INSERT INTO user_data(address) VALUES ('${address}');
     // ALTER TABLE us  er_data ADD address VARCHAR(200) after id;
-    const sql = `INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));
-                 INSERT INTO user_data(address) VALUES ('${address}');`
+    const sql = `INSERT INTO user(name, password) VALUES ('${formData.username}', password('${formData.password}'));`
     await query(sql).then(res => {
-      console.log(res)
+      query(`INSERT INTO user_data(address) VALUES ('${address}');`)
+      result.message = '注册成功'
     }).catch(err => {
       console.log(err)
     })

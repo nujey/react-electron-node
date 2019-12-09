@@ -33,7 +33,7 @@ class LoginFormTemplate extends React.Component {
       if(errors) {
         return false
       }
-      fetch(`http://localhost:9090/user/login?username=${values.username}&passward=${values.passward}`)
+      fetch(`http://localhost:9090/user/login?username=${values.username}&password=${values.password}`)
         .then(response => response.json())
         .then(result => {
           if (result.code === 200) {
@@ -60,7 +60,7 @@ class LoginFormTemplate extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('passward', {
+          {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入密码' }]
           })(
             <Input prefix={<Icon type="lock" style={{color: '#38adff'}}/>} placeholder="请输密码" />

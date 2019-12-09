@@ -71,8 +71,8 @@ class RegisterTemplate extends React.Component {
         }).then(response => response.json())
         .then(result => {
           if(result.code === 200) {
-            message.success('注册成功')
-            // this.props.history.push('/')
+            message.success(result.message)
+            this.props.history.push('/')
           }
         })
         // axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
