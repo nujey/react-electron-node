@@ -23,5 +23,28 @@
     <input type="text">
     <button type="submit">submit</button>
   </form>
+  <div id="app"></div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          text: 111222
+        }
+      },
+      mounted() {
+        var time = '111'
+        console.log(this.text)
+        this.test1()
+      },
+      methods: {
+        test1() {
+          var time = '222'
+          console.log(time)
+        }
+      }
+    })
+  </script>
 </body>
 </html>
