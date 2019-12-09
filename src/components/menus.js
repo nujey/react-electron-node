@@ -1,13 +1,13 @@
 export default [
   {
-    title: '我的事务',
+    title: '用户中心',
     icon: 'icon-home',
     key: '1',
     routes: [{
-      name: '待审批',
+      name: '用户列表',
       key: '1-1',
-      path: '/front/approval/undo', // 路由url
-      component: 'ApprovalUndo', // 路由组件
+      path: '/index/user/user-list', // 路由url
+      component: '', // 路由组件
     }, {
       name: '已处理',
       key: '1-2',

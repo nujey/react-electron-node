@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Table, Divider, Tag, Pagination } from 'antd'
+
 import ExportBtn from '../../components/export-btn'
 import ImportBtn from '../../components/import-btn'
 
-import './work.scss'
+import './userlist.scss'
 
 class WorkList extends React.Component {
   constructor(props) {
@@ -66,29 +67,13 @@ class WorkList extends React.Component {
         )
       }
     ]
-    const data = [
-      {
-        key: '1',
-        name: '阿呆',
-        age: '30',
-        address: '西安市市政府办公室',
-        tags: ['winner']
-      },
-      {
-        key: '2',
-        name: '阿旺',
-        age: '15',
-        address: '杭州市市政府办公室',
-        tags: ['loser']
-      },
-      {
-        key: '3',
-        name: 'CC',
-        age: '30',
-        address: '深圳市政府办公室',
-        tags: ['winner', 'cool', 'teacher']
-      }
-    ]
+    const data = [{
+      key: '1',
+      name: '阿呆',
+      age: '30',
+      address: '西安市市政府办公室',
+      tags: ['winner']
+    }]
     const map = {
       'name': '名字',
       'idcardNumber': '身份证号',
