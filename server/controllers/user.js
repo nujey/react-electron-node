@@ -1,5 +1,10 @@
 const { query } = require('../utils/db')
 
+let defaultResult = {
+  code: 200,
+  message: '',
+  status: true
+}
 /**
  * 用户中心接口 业务逻辑
  */
@@ -54,5 +59,19 @@ module.exports = {
     })
     // console.log(formData)
     ctx.body = result
+  },
+  /**
+   * 查询用户列表
+   * @param {*} ctx 
+   * @param {*} param 
+   */
+  async getUserList(ctx) {
+    let bodyParams = ctx.request.body
+    let result = defaultResult
+    const sql = bodyParams.username ? `SELECT * FROM user WHERE name='${bodyParams.username}'` : `SELECT * FROM user`
+    await query(sql).then(res => {
+      result.result = res
+      ctx.body = result
+    })
   }
 }

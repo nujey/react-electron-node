@@ -1,22 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Table, Divider, Tag, Pagination } from 'antd'
-
-import ExportBtn from '../../components/export-btn'
-import ImportBtn from '../../components/import-btn'
+import { Table, Divider, Input, Pagination } from 'antd'
 
 import './userlist.scss'
+
+import { getUserList } from '../../api/user'
 
 class WorkList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      colorStatus: false
+      colorStatus: false,
+      tableData: []
     }
   }
   handleItem(obj) {
-    this.props.history.push({ state: { a: 'a'}, pathname: '/index/work-detail', query: {...obj}})
+    console.log(obj)
+    // this.props.history.push({ state: { a: 'a'}, pathname: '/index/work-detail', query: {...obj}})
+  }
+  getList(value) {
+    getUserList({username: value ? value : ''}).then(res => {
+      this.setState({
+        tableData: res.result
+      })
+    })
+  }
+  componentDidMount() {
+    this.getList()
   }
   render() {
     const colums = [
@@ -27,32 +38,32 @@ class WorkList extends React.Component {
         render: text => <a style={{color: this.state.colorStatus ? '#f00': 'blue'}}>{text}</a>
       },
       {
-        title: '年龄',
-        dataIndex: 'age',
-        key: 'age'
+        title: '密码',
+        dataIndex: 'password',
+        key: 'password'
       },
+      // {
+      //   title: '标签',
+      //   dataIndex: 'tags',
+      //   key: 'tags',
+      //   render: tags => (
+      //     <span>
+      //       { tags.map(tag => {
+      //         let color = tag.length > 5 ? 'geekblue' : 'green'
+      //         if (tag === 'loser') {
+      //           color = 'volcano'
+      //         }
+      //         return (
+      //           <Tag color={color} key={tag}>{tag.toUpperCase()}</Tag>
+      //         )
+      //       })}
+      //     </span>
+      //   )
+      // },
       {
-        title: '标签',
-        dataIndex: 'tags',
-        key: 'tags',
-        render: tags => (
-          <span>
-            { tags.map(tag => {
-              let color = tag.length > 5 ? 'geekblue' : 'green'
-              if (tag === 'loser') {
-                color = 'volcano'
-              }
-              return (
-                <Tag color={color} key={tag}>{tag.toUpperCase()}</Tag>
-              )
-            })}
-          </span>
-        )
-      },
-      {
-        title: '地址',
-        dataIndex: 'address',
-        key: 'address'
+        title: '昵称',
+        dataIndex: 'nick',
+        key: 'nick'
       },
       {
         title: '操作',
@@ -67,27 +78,18 @@ class WorkList extends React.Component {
         )
       }
     ]
-    const data = [{
-      key: '1',
-      name: '阿呆',
-      age: '30',
-      address: '西安市市政府办公室',
-      tags: ['winner']
-    }]
-    const map = {
-      'name': '名字',
-      'idcardNumber': '身份证号',
-      'startTime': '开始时间'
-    }
     return (
       <div className="main-list">
-        <Table columns={colums} dataSource={data} pagination={false}/>
+        <div className="screen-box">
+          <Input.Search placeholder="请输入用户名" onSearch={value => {this.getList(value)}} style={{width: 200}}/>
+        </div>
+        <Table rowKey={record => record.id} columns={colums} dataSource={this.state.tableData} pagination={false}/>
         <div className="page">
           <Pagination
             showSizeChanger
             onShowSizeChange={this.onShowSizeChange}
             defaultCurrent={3}
-            total={100}
+            total={this.state.tableData.length}
           />
         </div>
       </div>

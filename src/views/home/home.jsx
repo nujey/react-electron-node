@@ -41,6 +41,8 @@ class LoginFormTemplate extends React.Component {
           } else {
             message.error(result.message, 3, () => { console.log('close')})
           }
+        }).catch(err => {
+          message.error('服务没起来啊')
         })
     })
   }

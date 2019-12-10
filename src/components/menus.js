@@ -11,7 +11,7 @@ export default [
     }, {
       name: '已处理',
       key: '1-2',
-      path: '/front/approval/done',
+      path: '/index/hooks-glance',
       auth: 'add', // 访问所需权限
       component: 'ApprovalDone'
     }]
