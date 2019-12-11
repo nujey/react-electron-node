@@ -1,13 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Form, Icon, Input, Button, message } from 'antd'
 
 import bgImg from '../../assets/images/home.jpg'
 import "./home.scss"
 
 import history from '../../utils/history'
-import localStorage from '../../utils/localstorage'
-import FormItem from 'antd/lib/form/FormItem'
+import { httpGet } from '../../utils/fetch'
 
 class Home extends React.Component {
   render() {
@@ -33,17 +31,11 @@ class LoginFormTemplate extends React.Component {
       if(errors) {
         return false
       }
-      fetch(`/api/user/login?username=${values.username}&password=${values.password}`)
-        .then(response => response.json())
-        .then(result => {
-          if (result.code === 200) {
-            history.push({ pathname: '/index/work-list' })
-          } else {
-            message.error(result.message, 3, () => { console.log('close')})
-          }
-        }).catch(err => {
-          message.error('服务没起来啊')
-        })
+      httpGet({url: `/user/login?username=${values.username}&password=${values.password}` }).then(res => {
+        history.push({ pathname: '/index/work-list' })
+      }).catch(err => {
+        message.error(err.message, 3)
+      })
     })
   }
   handleRegister = () => {

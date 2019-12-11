@@ -1,32 +1,12 @@
 import React from 'react'
 import { Form, Input, Cascader, Checkbox, Button, message } from 'antd'
-import axios from 'axios'
 import { withRouter } from 'react-router'
 
 import './register.scss'
 
-const addressMap = [{
-  value: 'zhejiang',
-  label: '浙江',
-  children: [{
-    value: 'hangzhou',
-    label: '杭州',
-    children: [{
-      value: 'xihu',
-      label: '西湖'
-    },{
-      value: 'tianjiang',
-      label: '钱塘新区'
-    }]
-  },{
-    value: 'shaoxing',
-    label: '绍兴',
-    children: [{
-      value: 'yuecheng',
-      label: '越城区'
-    }]
-  }]
-}]
+import { httpPost } from '../../utils/fetch'
+
+const addressMap = require('./address')
 
 // @withRouter
 
@@ -56,29 +36,15 @@ class RegisterTemplate extends React.Component {
         // console.log(errors)
       } else {
         console.log(values)
-        const parmas = {
+        const data = {
           username: values.username,
           password: values.password,
           address: values.address
         }
-        fetch(`/api/user/removeUser`, {
-          method: 'post',
-          headers: {
-            "Content-type": "application/json;charset=UTF-8"
-          },
-          body: JSON.stringify(parmas)
-        }).then(response => response.json())
-        .then(result => {
-          if(result.code === 200) {
-            message.success(result.message)
+        httpPost({url: '/user/removeUser', data }).then(res => {
+            message.success('注册成功')
             this.props.history.push('/')
-          }
         })
-        // axios.post('http://localhost:9090/user/removeUser', parmas).then(res => {
-        //   console.log(res, 111)
-        // }).catch(err => {
-        //   console.log(err)
-        // })
       }
     })
   }
