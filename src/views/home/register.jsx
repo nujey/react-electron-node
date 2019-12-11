@@ -61,7 +61,7 @@ class RegisterTemplate extends React.Component {
           password: values.password,
           address: values.address
         }
-        fetch('http://localhost:9090/user/removeUser', {
+        fetch(`/api/user/removeUser`, {
           method: 'post',
           headers: {
             "Content-type": "application/json;charset=UTF-8"

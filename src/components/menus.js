@@ -11,7 +11,7 @@ export default [
     }, {
       name: '已处理',
       key: '1-2',
-      path: '/index/hooks-glance',
+      path: '/index/user/user-list',
       auth: 'add', // 访问所需权限
       component: 'ApprovalDone'
     }]
@@ -23,12 +23,12 @@ export default [
     routes: [{
       name: '小傻瓜蛋儿',
       key: '2-1',
-      path: '/front/approval/undo', // 路由url
+      path: '/index/user/user-list', // 路由url
       component: 'ApprovalUndo', // 路由组件
     }, {
       name: '大傻瓜',
       key: '2-2',
-      path: '/front/approval/done',
+      path: '/index/user/user-list',
       auth: 'add', // 访问所需权限
       component: 'ApprovalDone'
     }]

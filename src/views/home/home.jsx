@@ -33,7 +33,7 @@ class LoginFormTemplate extends React.Component {
       if(errors) {
         return false
       }
-      fetch(`http://localhost:9090/user/login?username=${values.username}&password=${values.password}`)
+      fetch(`/api/user/login?username=${values.username}&password=${values.password}`)
         .then(response => response.json())
         .then(result => {
           if (result.code === 200) {
