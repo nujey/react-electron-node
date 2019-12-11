@@ -8,6 +8,20 @@ const pool = mysql.createPool({
   password: 'xiaokan',
   database: 'nini' // 库名
 })
+// const connection = mysql.createConnection({ multipleStatements: true })
+
+// let query = function(sql, values) {
+//   connection.query(sql, values, (err , result) => {
+//     return new Promise((resolve, reject) => {
+//       // 在数据池中进行会话操作
+//       if (err) {
+//         reject(err)
+//       } else {
+//         resolve(result)
+//       }
+//     })
+//   })
+// }
 
 let query = function(sql, values) {
   return new Promise((resolve, reject) => {

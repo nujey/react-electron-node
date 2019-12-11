@@ -6,6 +6,7 @@ import localStorage from '../../utils/localstorage'
 
 import Sider from "../../components/sideBar.js"
 import { WorkRoute }  from '../../router/work'
+import UserRouter from '../../router/user'
 import HooksRoute from '../../router/Hooks'
 
 class MainWeb extends React.Component {
@@ -35,6 +36,7 @@ class MainWeb extends React.Component {
           <div className="wrapper" style={wrapperStyle}>
             <WorkRoute />
             <HooksRoute />
+            <UserRouter />
           </div>
           <footer className="footer">
             <span className="copyright">Copyright@2020 张小鹿</span>

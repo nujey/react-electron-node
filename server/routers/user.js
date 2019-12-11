@@ -9,5 +9,6 @@
 const routers = router
   .get('/login', user.loginIn)
   .post('/removeUser', user.removeUser)
+  .post('/getUserList', user.getUserList)
 
 module.exports = routers

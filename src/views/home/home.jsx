@@ -1,13 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Form, Icon, Input, Button, message } from 'antd'
 
 import bgImg from '../../assets/images/home.jpg'
 import "./home.scss"
 
 import history from '../../utils/history'
-import localStorage from '../../utils/localstorage'
-import FormItem from 'antd/lib/form/FormItem'
+import { httpGet } from '../../utils/fetch'
 
 class Home extends React.Component {
   render() {
@@ -33,15 +31,11 @@ class LoginFormTemplate extends React.Component {
       if(errors) {
         return false
       }
-      fetch(`http://localhost:9090/user/login?username=${values.username}&passward=${values.passward}`)
-        .then(response => response.json())
-        .then(result => {
-          if (result.code === 200) {
-            history.push({ pathname: '/index/work-list' })
-          } else {
-            message.error('账号名或者密码错误', 3, () => { console.log('close')})
-          }
-        })
+      httpGet({url: `/user/login?username=${values.username}&password=${values.password}` }).then(res => {
+        history.push({ pathname: '/index/work-list' })
+      }).catch(err => {
+        message.error(err.message, 3)
+      })
     })
   }
   handleRegister = () => {
@@ -60,7 +54,7 @@ class LoginFormTemplate extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('passward', {
+          {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入密码' }]
           })(
             <Input prefix={<Icon type="lock" style={{color: '#38adff'}}/>} placeholder="请输密码" />

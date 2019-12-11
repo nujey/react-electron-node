@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Icon, Switch } from 'antd'
+import { Link } from 'react-router-dom'
 
 import menu from './menus'
 
@@ -24,7 +25,7 @@ class Sider extends Component {
         {this.childrenItem(x.routes)}
       </SubMenu>
       const hasNoChild = <Menu.Item key={x.key} title={x.title}>
-        <span><Icon type={x.icon}></Icon>{x.title}</span>
+        <Link to={x.path}><Icon type={x.icon}></Icon>{x.title}</Link>
       </Menu.Item>
       return x.routes && x.routes.length === 0 ? hasNoChild : hasChild
     })
@@ -32,7 +33,7 @@ class Sider extends Component {
   childrenItem(children = []) {
     return children.map((x, index) => {
       return <Menu.Item key={x.key} title={x.name}>
-        <span>{x.name}</span>
+        <Link to={x.path}>{x.name}</Link>
       </Menu.Item>
     })
   }
