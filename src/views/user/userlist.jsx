@@ -38,32 +38,16 @@ class WorkList extends React.Component {
         render: text => <a style={{color: this.state.colorStatus ? '#f00': 'blue'}}>{text}</a>
       },
       {
+        title: '昵称',
+        dataIndex: 'name',
+        key: 'nick',
+        render: text => <span>{'***' + text}</span>
+      },
+      {
         title: '密码',
         dataIndex: 'password',
-        key: 'password'
-      },
-      // {
-      //   title: '标签',
-      //   dataIndex: 'tags',
-      //   key: 'tags',
-      //   render: tags => (
-      //     <span>
-      //       { tags.map(tag => {
-      //         let color = tag.length > 5 ? 'geekblue' : 'green'
-      //         if (tag === 'loser') {
-      //           color = 'volcano'
-      //         }
-      //         return (
-      //           <Tag color={color} key={tag}>{tag.toUpperCase()}</Tag>
-      //         )
-      //       })}
-      //     </span>
-      //   )
-      // },
-      {
-        title: '昵称',
-        dataIndex: 'nick',
-        key: 'nick'
+        key: 'password',
+        render: () => <span>{'******'}</span> 
       },
       {
         title: '操作',
