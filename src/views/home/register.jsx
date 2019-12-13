@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import './register.scss'
 
 import { httpPost } from '../../utils/fetch'
+import { handleGetCode } from '../../api/common'
 
 const addressMap = require('./address')
 
@@ -12,7 +13,8 @@ const addressMap = require('./address')
 
 class RegisterTemplate extends React.Component {
   state = {
-    confirmDirty: false
+    confirmDirty: false,
+    SvgCode: ''
   }
   validateToNextPassword = (rule, value, callback) => {
     const { form } = this.props
@@ -35,18 +37,28 @@ class RegisterTemplate extends React.Component {
       if (errors) {
         // console.log(errors)
       } else {
-        console.log(values)
         const data = {
           username: values.username,
           password: values.password,
-          address: values.address
+          address: values.address,
+          code: values.verifyCode
         }
-        httpPost({url: '/user/removeUser', data }).then(res => {
+        httpPost({url: '/user/userRegister', data }).then(res => {
             message.success('注册成功')
             this.props.history.push('/')
         })
       }
     })
+  }
+  handleGetCode() {
+    handleGetCode('uuid=register').then(res => {
+      this.setState({
+        SvgCode: res.codeImg
+      })
+    })
+  }
+  componentDidMount() {
+    this.handleGetCode()
   }
   render() {
     const { getFieldDecorator } = this.props.form
@@ -77,6 +89,14 @@ class RegisterTemplate extends React.Component {
                       { validator: this.validateToNextPassword }]
             })(<Input.Password placeholder="请输入密码"/>)}
           </Form.Item>
+          <div style={{ "display": 'flex' }}>
+            <Form.Item label="验证码" className="self-form-item">
+              {getFieldDecorator('verifyCode', {
+                rules: [{ required: true, min: 4,  message: '请输入验证码' }]
+              })(<Input placeholder="请输入验证码"/>)}
+            </Form.Item>
+            <span dangerouslySetInnerHTML={{__html: this.state.SvgCode}} onClick={this.handleGetCode.bind(this)}></span>
+          </div>
           <Form.Item label="地区" className="self-form-item">
             {getFieldDecorator('address', {
               initialValue: ['zhejiang', 'hangzhou', 'xihu'],
