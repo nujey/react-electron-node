@@ -2,11 +2,18 @@
   background: #f2f3f8;
   // padding-top: 80px;
 }
+.bg-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .regitser-template {
   width: 1000px;
   padding: 20px;
   margin: 0 auto 10px;
-  background: #fff;
+  background: rgba($color: #fff, $alpha: 0.9);
   position: relative;
   // margin-top: 80px;
   .regitser-title {
