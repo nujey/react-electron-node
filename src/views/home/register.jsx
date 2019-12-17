@@ -71,7 +71,7 @@ class RegisterTemplate extends React.Component {
       },
     };
     return (
-      <div style={{"padding": "80px", 'position': 'relative'}}>
+      <div style={{"padding": "80px", 'position': 'relative', "height": "100%"}}>
         <img src={require('../../assets/images/bg1.jpg')} alt="" className="bg-img"/>
         <div className="regitser-template">
           <h3 className="regitser-title">欢迎注册小库</h3>
