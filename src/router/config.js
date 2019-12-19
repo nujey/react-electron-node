@@ -13,7 +13,7 @@ class RouteConfig extends React.Component {
     return (
       <Switch>
         <Route path="/" exact={true} component={Home} />
-        <Register path="/register" component={Register}/>
+        <Route path="/register" component={Register}/>
         <Route path="/index" component={HomeIndex} />
         <Route path="/login" component={Login} />
         <Route path="/404" component={Prim} />
