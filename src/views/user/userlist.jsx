@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
-import { Table, Divider, Input, Pagination } from 'antd'
-
+import { Table, Divider, Input, Pagination, Modal, message } from 'antd'
+import { httpPost } from '../../utils/fetch'
 import './userlist.scss'
 
 import { getUserList } from '../../api/user'
@@ -24,6 +22,24 @@ class WorkList extends React.Component {
       this.setState({
         tableData: res.result
       })
+    })
+  }
+  handleRemoveUser(item){
+    const that = this
+    Modal.confirm({
+      title: '删除确认',
+      content: '你确认删除该用户吗',
+      cancelText: '取消',
+      okText: '删除',
+      okType: 'danger',
+      onOk() {
+        httpPost({url: '/user/removeUserItem', data: { uuid: item.uuid }}).then(res => {
+          message('操作成功')
+          that.getList()
+        }).catch(err => {
+          message(err.message)
+        })
+      }
     })
   }
   componentDidMount() {
@@ -57,7 +73,7 @@ class WorkList extends React.Component {
           <span>
             <a onClick={this.handleItem.bind(this, {index, record, text})}>{record.name}</a>
             <Divider type="vertical"/>
-            <a>删除</a>
+            <a onClick={this.handleRemoveUser.bind(this, record)}>删除</a>
           </span>
         )
       }

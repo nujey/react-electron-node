@@ -7,35 +7,30 @@ export default [
       name: '用户列表',
       key: '1-1',
       path: '/index/user/user-list', // 路由url
-      component: '', // 路由组件
-    }, {
-      name: '已处理',
-      key: '1-2',
-      path: '/index/user/user-list',
-      auth: 'add', // 访问所需权限
-      component: 'ApprovalDone'
     }]
   },
   {
-    title: '傻瓜蛋儿',
+    title: '商户中心',
     icon: 'icon-home',
     key: '2',
     routes: [{
-      name: '小傻瓜蛋儿',
+      name: '商家列表',
       key: '2-1',
-      path: '/index/user/user-list', // 路由url
-      component: 'ApprovalUndo', // 路由组件
-    }, {
-      name: '大傻瓜',
-      key: '2-2',
-      path: '/index/user/user-list',
-      auth: 'add', // 访问所需权限
-      component: 'ApprovalDone'
+      path: '/', // 路由url
     }]
   },
   {
-    title: '工作流程',
+    title: '私人定制',
     icon: 'icon-home',
-    key: '3'
+    key: '3',
+    routes: [{
+      name: '小程序定制',
+      key: '3-1',
+      path: '/app/'
+    }, {
+      name: '图标管理',
+      key: '3-2',
+      path: '/app/'
+    }]
   }
 ]
