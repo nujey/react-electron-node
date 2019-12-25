@@ -8,6 +8,7 @@ import Sider from "../../components/sideBar.js"
 import { WorkRoute }  from '../../router/work'
 import UserRouter from '../../router/user'
 import HooksRoute from '../../router/Hooks'
+import AppRouter from '../../router/application'
 
 class MainWeb extends React.Component {
   handleLogout = () => {
@@ -37,6 +38,7 @@ class MainWeb extends React.Component {
             <WorkRoute />
             <HooksRoute />
             <UserRouter />
+            <AppRouter />
           </div>
           <footer className="footer">
             <span className="copyright">Copyright@2020 张小鹿</span>

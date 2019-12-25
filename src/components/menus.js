@@ -26,11 +26,11 @@ export default [
     routes: [{
       name: '小程序定制',
       key: '3-1',
-      path: '/app/'
+      path: '/index/app/app-home'
     }, {
       name: '图标管理',
       key: '3-2',
-      path: '/app/'
+      path: '/index/app/app-icon'
     }]
   }
 ]
