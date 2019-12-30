@@ -49,13 +49,12 @@ class RegisterTemplate extends React.Component {
       }
     })
   }
-  // handleGetCode() {
-  //   handleGetCode('uuid=register').then(res => {
-  //     this.setState({
-  //       SvgCode: res.codeImg
-  //     })
-  //   })
-  // }
+  handleToLogin(){
+    this.props.history.push('/')
+  }
+  componentDidMount() {
+    console.log(this.props)
+  }
   render() {
     const { getFieldDecorator } = this.props.form
     const tailFormItemLayout = {
@@ -113,6 +112,9 @@ class RegisterTemplate extends React.Component {
               )}
             </Form.Item>
             <Form.Item>
+              <Button style={{ marginRight: '50px' }} onClick={this.handleToLogin.bind(this)}>
+                去登录
+              </Button>
               <Button type="primary" htmlType="submit">
                 注册
               </Button>

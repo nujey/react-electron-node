@@ -1,5 +1,4 @@
 // const globalAPi = 'http://localhost:9090'
-const globalAPi = window.location.origin
 
 export function getUserList(params) {
   return new Promise((resolve, reject) => {
