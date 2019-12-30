@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import { Card, Icon, Skeleton, Avatar } from 'antd'
+import { Card, Icon, Skeleton, Avatar, Tooltip } from 'antd'
 
 import './application.scss'
 
@@ -42,8 +42,8 @@ class AppHome extends React.Component {
                 key={index}
                 style={{ width: 300, height: 240, margin: 12 }}
                 actions={[
-                  <Icon type="setting" key="setting" onClick={(e) => this.handleSetting(index, e)}/>,
-                  <Icon type="edit" key="edit" />
+                  <Tooltip placement="top" title="设置"><Icon type="setting" key="setting" onClick={(e) => this.handleSetting(index, e)}/></Tooltip>,
+                  <Tooltip placement="top" title="编辑"><Icon type="edit" key="edit" /></Tooltip>
                 ]}
                 hoverable={true}
                 bodyStyle={{height: 200}}>
@@ -55,7 +55,7 @@ class AppHome extends React.Component {
   }
   render() {
     return (
-      <div className="card-list">
+      <div className="app-home card-list">
         {this.cardItem(this.state.cardList)}
       </div>
     )

@@ -32,5 +32,15 @@ export default [
       key: '3-2',
       path: '/index/app/app-icon'
     }]
+  },
+  {
+    title: '运维管理',
+    icon: 'icon-home',
+    key: '4',
+    routes: [{
+      name: '公告文章',
+      key: '4-1',
+      path: '/index/app/app-article'
+    }]
   }
 ]
