@@ -25,7 +25,9 @@ class Sider extends Component {
         {this.childrenItem(x.routes)}
       </SubMenu>
       const hasNoChild = <Menu.Item key={x.key} title={x.title}>
-        <Link to={x.path}><Icon type={x.icon}></Icon>{x.title}</Link>
+        {/* <Link to={x.path}> */}
+          <Icon type={x.icon}></Icon>{x.title}
+        {/* </Link> */}
       </Menu.Item>
       return x.routes && x.routes.length === 0 ? hasNoChild : hasChild
     })

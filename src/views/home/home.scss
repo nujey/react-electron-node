@@ -58,11 +58,12 @@
     flex-direction: column;
     justify-content: space-between;
     .header-breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 0 12px;
       height: 80px;
-      line-height: 80px;
       border-bottom: 1px solid #ccc;
-      text-align: right;
     }
     .footer {
       height: 80px;
