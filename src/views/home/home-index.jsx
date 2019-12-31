@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 // import history from '../../utils/history'
 import localStorage from '../../utils/localstorage'
+import './home.scss'
 
 import Sider from "../../components/sideBar.js"
 import { WorkRoute }  from '../../router/work'
@@ -24,15 +25,17 @@ class MainWeb extends React.Component {
       height:'100%'
     }
     return (
-      <div className="container">
+      <div className="home-container">
         <section className="sidebar">
           <Sider />
         </section>
         <section className="main">
-          <header className="header">
-            <span>你好啊，张小鹿</span>
-            <span onClick={this.handleLogout}>退出登录</span>
-            {/* <Link to="/index/work-list">work-list</Link> */}
+          <header className="header-breadcrumb">
+            <div>面包屑</div>
+            <div>
+              <span>你好啊，张小鹿</span>
+              <span onClick={this.handleLogout}>退出登录</span>
+            </div>
           </header>
           <div className="wrapper" style={wrapperStyle}>
             <WorkRoute />
