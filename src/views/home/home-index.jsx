@@ -56,7 +56,7 @@ class MainWeb extends React.Component {
         <Link to="/index"> 回家</Link>
       </Breadcrumb.Item>
     ].concat(extraBreadcrumbItems)
-    console.log(breadcrumbItems)
+
     return (
       <div className="home-container">
         <section className="sidebar">
