@@ -19,6 +19,29 @@
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid #38adf3;
+      padding-bottom: 10px;
+    }
+    .resume-basic-form {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px;
+      .resume-basic-left {
+        width: 80%;
+        .ant-form-item {
+          display: inline-block;
+          width: 45%;
+          margin:0 10px 0 0;
+        }
+      }
+      .resume-basic-photo {
+        width: 20%;
+        border: 1px solid #38adf3;
+      }
+    }
+    .resume-project-add {
+      width: 100%;
+      text-align: center;
+      padding: 20px;
     }
   }
 }
