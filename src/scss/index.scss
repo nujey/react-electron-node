@@ -26,38 +26,4 @@ body {
   height: 100%;
 }
 $primary-bg: #1790ff;
-.container {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  display: flex;
-  .sidebar {
-    width: 140px;
-    height: 100%;
-    background: #001529;
-  }
-  .main {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    .header {
-      padding: 0 12px;
-      height: 80px;
-      line-height: 80px;
-      border-bottom: 1px solid #ccc;
-      text-align: right;
-    }
-    .footer {
-      height: 80px;
-      text-align: center;
-      line-height: 80px;
-      padding: 0 12px;
-      border-top: 1px solid #ccc;
-    }
-  }
-}
-.main-content {
-  width: 100%;
-  height: 100%;
-}
+

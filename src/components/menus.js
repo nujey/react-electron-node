@@ -16,7 +16,7 @@ export default [
     routes: [{
       name: '商家列表',
       key: '2-1',
-      path: '/', // 路由url
+      path: '/111', // 路由url
     }]
   },
   {
@@ -41,6 +41,16 @@ export default [
       name: '公告文章',
       key: '4-1',
       path: '/index/app/app-article'
+    }]
+  },
+  {
+    title: '个人中心',
+    icon: 'icon-home',
+    key: '5',
+    routes: [{
+      name: '我的简历',
+      key: '5-1',
+      path: '/index/mine/my-resume'
     }]
   }
 ]
