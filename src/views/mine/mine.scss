@@ -1,0 +1,24 @@
+.my-resume {
+  margin: 10px;
+  box-decoration-break: clone;
+  .resume-buttons {
+    // background-image: linear-gradient(to top, #f0f, #fff);
+    background: #f2f3f8;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    & > button {
+      margin: 8px 10px;
+    }
+  }
+  .main-resume {
+    padding: 5px 12px;
+    .resume-item-title {
+      color: #38adf3;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #38adf3;
+    }
+  }
+}

@@ -8,7 +8,7 @@ import './home.scss'
 import Sider from "../../components/sideBar.js"
 import { WorkRoute }  from '../../router/work'
 import UserRouter from '../../router/user'
-import HooksRoute from '../../router/Hooks'
+import MineHooksRoute from '../../router/mineHook'
 import AppRouter from '../../router/application'
 
 class MainWeb extends React.Component {
@@ -31,14 +31,17 @@ class MainWeb extends React.Component {
       '/index/app': '私人订制',
       '/index/app/app-home': '首页定制',
       '/index/app/app-icon': '应用管理',
-      '/index/app/app-article': '公告文章'
+      '/index/app/app-article': '公告文章',
+      '/index/mine': '个人中心',
+      '/index/mine/my-resume': '我的简历'
     }
     const routes = {
       '/index': '首页',
       '/index/user/user-list': '用户列表',
       '/index/app/app-home': '首页定制',
       '/index/app/app-icon': '应用管理',
-      '/index/app/app-article': '公告文章'
+      '/index/app/app-article': '公告文章',
+      '/index/mine/my-resume': '我的简历'
     }
     // console.log(this.props.location.pathname)
     const pathSnippets = this.props.location.pathname.split('/').filter(i => i)
@@ -74,7 +77,7 @@ class MainWeb extends React.Component {
           </header>
           <div className="wrapper" style={wrapperStyle}>
             <WorkRoute />
-            <HooksRoute />
+            <MineHooksRoute />
             <UserRouter />
             <AppRouter />
           </div>
