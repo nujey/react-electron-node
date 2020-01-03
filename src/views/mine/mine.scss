@@ -1,6 +1,9 @@
 .my-resume {
-  margin: 10px;
+  height: 100%;
+  margin: 0 10px;
+  padding: 10px 0;
   box-decoration-break: clone;
+  overflow: scroll;
   .resume-buttons {
     // background-image: linear-gradient(to top, #f0f, #fff);
     background: #f2f3f8;
@@ -11,7 +14,9 @@
     }
   }
   .main-resume {
+    height: calc(100% - 62px);
     padding: 5px 12px;
+    overflow-y: scroll;
     .resume-item-title {
       color: #38adf3;
       font-size: 18px;
@@ -41,7 +46,21 @@
     .resume-project-add {
       width: 100%;
       text-align: center;
-      padding: 20px;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px dashed #c1c2c3;
+    }
+    .skill-module {
+      // background: #ff0;
+      margin: 14px 0;
+      .skill-item {
+        display: flex;
+        margin-bottom: 8px;
+        .ant-slider {
+          margin: 0 20px 0 30px;
+          flex: 1;
+        }
+      }
     }
   }
 }

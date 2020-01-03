@@ -22,7 +22,8 @@ class MainWeb extends React.Component {
   render() {
     const wrapperStyle = {
       width:'100%', 
-      height:'100%'
+      height:'calc(100% - 160px)',
+      overflow: 'hidden'
     }
     const breadcrumbNameMap = {
       '/index': '首页',
