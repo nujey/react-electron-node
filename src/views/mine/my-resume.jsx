@@ -1,6 +1,7 @@
 // 通过hooks来编写的简历
 import React from 'react'
-import { useState } from 'react'
+import moment from 'moment'
+import { useState, useEffect } from 'react'
 
 import { Form, Button, Input, Icon, DatePicker, Select, Slider } from 'antd'
 
@@ -8,9 +9,115 @@ import "./mine.scss"
 
 const { RangePicker } = DatePicker
 
-function MyResumeFrom(props) {
-  const [name, setName] = useState('1111')
+/**
+ * 教育模块
+ * @param {*} props 
+ */
+function EduModule(props) {
+  const [eduModules, setEduModules] = useState([])
+  const [eduStatus, setEduStatus] = useState(false)
   const { getFieldDecorator } = props.form
+
+  //  添加教育经历按钮
+  function addEduModules() {
+    const tempObj = {
+      startTime: '',
+      endTime: '',
+      eduRecord: '2',
+      eduSchoolProvince: '北京',
+      eduUniversity: ''
+    }
+    // 这里需要数组的解构变成，数组的赋值是引用传递的，react中 data = this.state.data 然后再push
+    // 相当于直接this.state.data.push(obj) , 所以需要变成一个新数组
+    const temp = [...eduModules]
+    // const temp = eduModules.slice(0)
+    temp.push(tempObj)
+
+    setEduModules(temp)
+  }
+  // 选择时间
+  function handleTimeChange(item, index, value, dataString) {
+    const temp = [...eduModules]
+    console.log(index)
+    // temp[index].startTime = dataString[0]
+    // temp[index].endTime = dataString[1]
+    // setEduModules(temp)
+    // console.log(eduModules)
+  }
+  useEffect(() => {
+    // console.log(eduModules)
+  })
+  // 选择学校前面的省份
+  const schoolSelectBefore = (
+    <Select defaultValue="北京" style={{width: 80}}>
+      <Select.Option value="北京">北京</Select.Option>
+      <Select.Option value="上海">上海</Select.Option>
+    </Select>
+  )
+  return (
+    <section>
+      <div className="resume-item-title">
+        <span>教育经历</span>
+        <Button type="dashed" icon={eduStatus ? 'save' : 'edit'} onClick={() => {setEduStatus(!eduStatus)}}>{ eduStatus ? '保存' : '编辑'}</Button>
+      </div>
+      {
+        eduModules.length > 0 &&
+          eduModules.map((item, index) => {
+            return <div style={{display: 'flex', alignItems: 'center'}} key={index}>
+              <Form style={{display: 'flex', margin: '10px 0'}} layout="inline">
+                <Form.Item label="就读时间">
+                  {getFieldDecorator('eduTime', {
+                    rules: [{ required: true, message: '请选择学习时间段' }]
+                  })(
+                    <RangePicker format="YYYY-MM-DD" onChange={handleTimeChange.bind(this, item, index)}/>
+                  )}
+                </Form.Item>
+                <Form.Item label="学历">
+                  {getFieldDecorator('eduRecord', {
+                    rules: [{ required: true, message: '请选择学历' }]
+                  })(
+                    <Select style={{ width: 120 }}>
+                      <Select.Option value="0">高中</Select.Option>
+                      <Select.Option value="1">大专</Select.Option>
+                      <Select.Option value="2">本科</Select.Option>
+                      <Select.Option value="3">硕士研究生</Select.Option>
+                      <Select.Option value="4">博士</Select.Option>
+                    </Select>
+                  )}
+                </Form.Item>
+                <Form.Item label="学校">
+                  {getFieldDecorator('eduUniversity', {
+                    rules: [{ required: true, message: '请输入大学名称' }]
+                  })(
+                    <Input addonBefore={schoolSelectBefore} style={{ width: 300 }} placeholder="请输入大学名称" />
+                  )}
+                </Form.Item>
+              </Form>
+              {
+                eduStatus ? <div>
+                  <Button type="primary" shape="circle" icon="close"></Button>
+                </div> : ''
+              }
+            </div>
+          })
+      }
+      {
+        (!eduStatus && eduModules.length === 0) && <p className="no-data">暂无数据</p>
+      }
+      {
+        eduStatus ? <div className="resume-project-add primary-border">
+          <Icon type="plus" style={{fontSize: 30, color: '#38adff'}} onClick={addEduModules}></Icon>
+        </div> : ''
+      }
+    </section>
+  )
+}
+
+function MyResumeFrom(props) {
+  // const [eduModules, setEduModules] = useState([])
+  // const [eduStatus, setEduStatus] = useState(false)
+  const { getFieldDecorator } = props.form
+  // 技能对象
   const skillMarks = {
     0: '熟悉',
     25: '熟练',
@@ -21,6 +128,18 @@ function MyResumeFrom(props) {
       label: <span>专家</span>
     }
   }
+
+  // 选择学校前面的省份
+  // const schoolSelectBefore = (
+  //   <Select defaultValue="北京" style={{width: 80}}>
+  //     <Select.Option value="北京">北京</Select.Option>
+  //     <Select.Option value="上海">上海</Select.Option>
+  //   </Select>
+  // )
+  // 时间选择
+  useEffect(() => {
+    
+  })
   return (
     <div className="my-resume">
       <div className="resume-buttons">
@@ -84,50 +203,7 @@ function MyResumeFrom(props) {
           </Form>
         </section>
         
-        <section>
-          <div className="resume-item-title">
-            <span>教育经历</span>
-            <Button type="dashed" icon="save">保存</Button>
-          </div>
-          <div style={{display: 'flex', alignItems: 'center'}}>
-            <Form style={{display: 'flex', margin: '10px 0'}} layout="inline">
-              <Form.Item label="就读时间">
-                {getFieldDecorator('eduTime', {
-                  rules: [{ required: true, message: '请选择学习时间段' }]
-                })(
-                  <RangePicker />
-                )}
-              </Form.Item>
-              <Form.Item label="学历">
-                {getFieldDecorator('eduRecord', {
-                  rules: [{ required: true, message: '请选择学历' }]
-                })(
-                  <Select style={{ width: 120 }}>
-                    <Select.Option value="0">高中</Select.Option>
-                    <Select.Option value="1">大专</Select.Option>
-                    <Select.Option value="2">本科</Select.Option>
-                    <Select.Option value="3">硕士研究生</Select.Option>
-                    <Select.Option value="4">博士</Select.Option>
-                  </Select>
-                )}
-              </Form.Item>
-              <Form.Item label="学校">
-                {getFieldDecorator('eduUniversity', {
-                  rules: [{ required: true, message: '请输入大学名称' }]
-                })(
-                  <Input style={{ width: 300 }} placeholder="请输入大学全称" />
-                )}
-              </Form.Item>
-            </Form>
-            
-            <div>
-              <Button type="primary" shape="circle" icon="close"></Button>
-            </div>
-          </div>
-          <div className="resume-project-add primary-border">
-            <Icon type="plus" style={{fontSize: 30, color: '#38adff'}}></Icon>
-          </div>
-        </section>
+        <EduModule form={props.form}/>
         
         <section>
           <div className="resume-item-title">
@@ -157,12 +233,14 @@ function MyResumeFrom(props) {
           </div>
 
           <div className="resume-project-add">
-            <Icon type="plus" style={{fontSize: 30, color: '#38adff'}} onClick=""></Icon>
+            <Icon type="plus" style={{fontSize: 30, color: '#38adff'}}></Icon>
           </div>
         </section>
       </div>
     </div>
   )
 }
+
 const MyResume = Form.create()(MyResumeFrom)
+
 export default MyResume

@@ -49,6 +49,7 @@
       padding: 10px;
       margin: 10px 0;
       border: 1px dashed #c1c2c3;
+      cursor: pointer;
     }
     .skill-module {
       // background: #ff0;
@@ -61,6 +62,10 @@
           flex: 1;
         }
       }
+    }
+    .no-data {
+      margin: 20px 0;
+      text-align: center;
     }
   }
 }
