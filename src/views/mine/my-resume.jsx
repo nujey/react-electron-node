@@ -102,7 +102,6 @@ function MyResumeFrom(props) {
           </Form>
         </section>
         
-        <FormTest />
         <EduModule />
         <section>
           <div className="resume-item-title">

@@ -5,22 +5,36 @@ import { Form, Input, Icon, Button } from 'antd';
 let id = 0;
 
 class DynamicFieldSet extends React.Component {
-  remove = k => {
+  add = () => {
+    const obj = {
+      id: id++,
+      name: '',
+      age: '20'
+    }
     const { form } = this.props;
-    const keys = form.getFieldValue('keys');
+    const newkeys = form.getFieldValue('keys')
+    newkeys.push(obj)
     form.setFieldsValue({
-      keys: keys.filter(key => key !== k),
+      keys: newkeys
     })
   }
 
-  add = () => {
+  remove = k => {
     const { form } = this.props;
-    const nextKeys = form.getFieldValue('keys')
-    nextKeys.push(id++)
+    const keys2 = [...form.getFieldValue('keys')];
+    keys2.splice(k, 1)
     form.setFieldsValue({
-      keys: nextKeys
+      keys: keys2
     })
   }
+
+  // remove = k => {
+  //   const { form } = this.props;
+  //   const keys = form.getFieldValue('keys');
+  //   form.setFieldsValue({
+  //     keys: keys.filter((key, i) => i !== k),
+  //   })
+  // }
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
@@ -32,29 +46,21 @@ class DynamicFieldSet extends React.Component {
     };
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
-    const formItems = keys.map((k, index) => (
-      <Form.Item
+    const formItems = keys.map((k, index) => {
+      return <Form.Item
         label={index === 0 ? 'Passengers' : ''}
         required={false}
-        key={index}
+        key={k.id}
       >
-        {getFieldDecorator(`names[${k}]`, {
-          validateTrigger: ['onChange', 'onBlur'],
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: "Please input passenger's name or delete this field.",
-            },
-          ],
+        {getFieldDecorator(`names${k.id}`, {
+          initialValue: k.age,
         })(<Input placeholder="passenger name" style={{ width: '60%', marginRight: 8 }} />)}
           <Icon
             className="dynamic-delete-button"
             type="minus-circle-o"
-            onClick={() => this.remove(k)}
-          />
+            onClick={() => this.remove(index)} />
       </Form.Item>
-    ));
+    });
     return (
       <Form onSubmit={this.handleSubmit}>
         {formItems}
