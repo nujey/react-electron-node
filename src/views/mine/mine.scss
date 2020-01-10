@@ -50,6 +50,10 @@
       margin: 10px 0;
       border: 1px dashed #c1c2c3;
       cursor: pointer;
+      transition: all .5s;
+      &:hover {
+        border: 1px dashed #38adf3;
+      }
     }
     .skill-module {
       // background: #ff0;

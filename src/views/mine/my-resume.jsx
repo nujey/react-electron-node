@@ -9,32 +9,11 @@ import "./mine.scss"
 
 import FormTest from './test'
 import EduModule from './components/edu-module'
-
+import SkillModule from './components/skill-module'
 const { RangePicker } = DatePicker
 
 function MyResumeFrom(props) {
-  // const [eduModules, setEduModules] = useState([])
-  // const [eduStatus, setEduStatus] = useState(false)
   const { getFieldDecorator } = props.form
-  // 技能对象
-  const skillMarks = {
-    0: '熟悉',
-    25: '熟练',
-    50: '掌握',
-    75: '精通',
-    100: {
-      style: { color: '#f50' },
-      label: <span>专家</span>
-    }
-  }
-
-  // 选择学校前面的省份
-  // const schoolSelectBefore = (
-  //   <Select defaultValue="北京" style={{width: 80}}>
-  //     <Select.Option value="北京">北京</Select.Option>
-  //     <Select.Option value="上海">上海</Select.Option>
-  //   </Select>
-  // )
   // 时间选择
   useEffect(() => {
     
@@ -103,27 +82,7 @@ function MyResumeFrom(props) {
         </section>
         
         <EduModule />
-        <section>
-          <div className="resume-item-title">
-            <span>专业技能</span>
-            <Button type="dashed" icon="save">保存</Button>
-          </div>
-          <div className="skill-module">
-            <div className="skill-item">
-              <Input placeholder="请输入技能名称" style={{ width: 100 }}></Input>
-              <Slider marks={skillMarks}/>
-            </div>
-            <div className="skill-item">
-              <Input placeholder="请输入技能名称" style={{ width: 100 }}></Input>
-              <Slider marks={skillMarks}/>
-            </div>
-            <div className="skill-item">
-              <Input placeholder="请输入技能名称" style={{ width: 100 }}></Input>
-              <Slider marks={skillMarks}/>
-            </div>
-          </div>
-        </section>
-        
+        <SkillModule />
         <section>
           <div className="resume-item-title">
             <span>项目经验</span>

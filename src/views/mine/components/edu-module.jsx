@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 
 import { Form, Button, Input, Icon, DatePicker, Select, AutoComplete } from 'antd'
 
-import "../mine.scss"
+// import "../mine.scss"
 
 const { RangePicker } = DatePicker
 
@@ -64,17 +64,30 @@ function EduModuleFrom(props) {
       })
     })
   }
-
-  // 输入大学名称
-  function handleInputEdu(index, e){
+  // 获取焦点的时候请求大学数据
+  function handleAutoFocus(index) {
+    console.log(index)
     const eduModulesMap = props.form.getFieldValue('eduModulesMap')
-    eduModulesMap[index].eduUniversity = e.target.value
+    jsonp(`https://api.restartai.com/kedis/kdict/keys/gx_${eduModulesMap[index].eduSchoolProvince}`, function(err, data) {
+      setEduSchool(data.data)
+    })
+  }
+  // 输入大学名称模糊搜索
+  function handleInputEdu(index, e){
+    // const eduModulesMap = props.form.getFieldValue('eduModulesMap')
+    // eduModulesMap[index].eduUniversity = e.target.value
+    // props.form.setFieldsValue({
+    //   eduModulesMap: eduModulesMap
+    // })
+    console.log(index, e)
+  }
+  // 自动补全的change
+  function changeAutoComplete(index, value) {
+    const eduModulesMap = props.form.getFieldValue('eduModulesMap')
+    eduModulesMap[index].eduUniversity = value
     props.form.setFieldsValue({
       eduModulesMap: eduModulesMap
     })
-  }
-  function changeAutoComplete(value) {
-    console.log(value)
   }
   // 删除一行教育经历
   function handleRemoveEduItem(index) {
@@ -105,9 +118,6 @@ function EduModuleFrom(props) {
   function getProvince() {
     jsonp('https://api.restartai.com/kedis/kdict/keys/gxlinks', function(err, data) {
       setEduProvinceSchool(data.data)
-      jsonp(`https://api.restartai.com/kedis/kdict/keys/gx_${'北京'}`, function(err, data) {
-        setEduSchool(data.data)
-      })
     })
   }
   useEffect(() => {
@@ -157,8 +167,9 @@ function EduModuleFrom(props) {
                 <AutoComplete dataSource={eduSchool}
                   style={{ width: 220 }}
                   placeholder="请输入大学名称"
-                  onChange={changeAutoComplete}
-                  onSeach={handleInputEdu.bind(this, index)} />
+                  onFocus={handleAutoFocus.bind(this, index)}
+                  onChange={changeAutoComplete.bind(this, index)}
+                  onSearch={handleInputEdu.bind(this, index)} />
                 </Input.Group>)}           
               {
                 // <Icon className="item-delete-button" type="minus-circle-o" onClick={handleRemoveEduItem.bind(this, index)}/>
