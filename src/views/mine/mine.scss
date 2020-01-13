@@ -39,8 +39,17 @@
         }
       }
       .resume-basic-photo {
-        width: 20%;
-        border: 1px solid #38adf3;
+        width: 120px;
+        height: 154px;
+        border: 1px dashed #38adf3;
+        border-radius: 2px;
+        & > span {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
     .resume-project-add {
@@ -65,6 +74,17 @@
           margin: 0 20px 0 30px;
           flex: 1;
         }
+      }
+    }
+    .project-module {
+      .project-form-item {
+        margin: 12px 0;
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px dashed #38adff
+      }
+      & > .project-form-item:nth-child(2) {
+        border-top: none;
       }
     }
     .no-data {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useMemo } from 'react'
-import { Input, Button, Slider, Icon, message } from 'antd'
+import { Input, Button, Slider, Icon, message, Tooltip } from 'antd'
 
 let num = 0
 
@@ -51,19 +51,19 @@ function SkillModule(props) {
   const skillMarks = {
     0: {
       style: { color: '#93f' },
-      label: <span>熟悉</span>
+      label: <Tooltip title="或许你只是听过" placement="bottomRight">熟悉</Tooltip>
     },
     33: {
       style: { color: '#63f' },
-      label: <span>熟练</span>
+      label: <Tooltip title="难道你能写项目？" placement="bottom">熟练</Tooltip>
     },
     66: {
       style: { color: '#33f' },
-      label: <span>精通</span>
+      label: <Tooltip title="亲～带带我" placement="bottom">精通</Tooltip>
     },
     100: {
       style: { color: '#036' },
-      label: <span>专家</span>
+      label: <Tooltip title="大佬！大佬！大佬！膜拜大佬！" placement="bottomLeft">专家</Tooltip>
     }
   }
   return (
