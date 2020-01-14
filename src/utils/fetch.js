@@ -1,5 +1,8 @@
+import localStorage from './localstorage'
+
 const headers = {
-  "Content-type": "application/json;charset=UTF-8"
+  "Content-type": "application/json;charset=UTF-8",
+  "token": localStorage.getItem('token') || ''
 }
 const BASE_API = '/api'
 

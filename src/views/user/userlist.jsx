@@ -22,6 +22,8 @@ class WorkList extends React.Component {
       this.setState({
         tableData: res.result
       })
+    }).catch(err => {
+      console.log(err)
     })
   }
   handleRemoveUser(item){
