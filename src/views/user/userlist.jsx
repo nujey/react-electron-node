@@ -19,11 +19,14 @@ class WorkList extends React.Component {
   }
   getList(value) {
     getUserList({username: value ? value : ''}).then(res => {
-      this.setState({
-        tableData: res.result
-      })
-    }).catch(err => {
-      console.log(err)
+      if (res.code === 102) {
+        message.error('该账号未登录')
+        this.props.history.push({pathname: '/'})
+      } else {
+        this.setState({
+          tableData: res.result
+        })
+      }
     })
   }
   handleRemoveUser(item){

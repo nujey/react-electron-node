@@ -33,7 +33,7 @@ class LoginFormTemplate extends React.Component {
         return false
       }
       httpGet({url: `/user/login?username=${values.username}&password=${values.password}` }).then(res => {
-        localStorage.setItem('uuis', res.uuid)
+        localStorage.setItem('uuid', res.uuid)
         localStorage.setItem('name', res.name)
         localStorage.setItem('token', res.token)
         history.push({ pathname: '/index/work-list' })

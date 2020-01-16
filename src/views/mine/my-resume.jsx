@@ -2,8 +2,9 @@
 import React from 'react'
 import moment from 'moment'
 import { useState, useEffect } from 'react'
-
 import { Form, Button, Radio, Input, Icon, InputNumber, Upload} from 'antd'
+import { httpPost } from '../../utils/fetch'
+import localStorage from '../../utils/localstorage'
 
 import "./mine.scss"
 
@@ -16,7 +17,12 @@ function MyResumeFrom(props) {
   const { getFieldDecorator } = props.form
   // 时间选择
   useEffect(() => {
-    console.log('请求简历数据')
+    httpPost({
+      url: '/user/getUserResume',
+      data: { uuid: localStorage.getItem('uuid', true) }
+    }).then(res => {
+      console.log(res)
+    })
   }, [])
   function handleBasicSubmit() {
     const { validateFields } = props.form
@@ -112,7 +118,7 @@ function MyResumeFrom(props) {
           </Form>
         </section>
         
-        <EduModule />
+        <EduModule eduList={[]}/>
         <SkillModule />
         <ProjectModule arr={[1, 2, 3]}/>
         {/* <section>

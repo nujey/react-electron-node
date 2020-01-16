@@ -13,7 +13,7 @@ const { RangePicker } = DatePicker
 let id = 0
 
 function EduModuleFrom(props) {
-  const [eduModules, setEduModules] = useState([])
+  const [eduModules, setEduModules] = useState(props.eduList)
   const [eduStatus, setEduStatus] = useState(false)
   const [eduProvinceSchool, setEduProvinceSchool] = useState([])
   const [eduSchool, setEduSchool] = useState([])
