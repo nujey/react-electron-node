@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState, useEffect, useMemo } from 'react'
 import { Input, Button, Slider, Icon, message, Tooltip } from 'antd'
+import { httpPost } from '../../../utils/fetch'
+import localStorage from '../../../utils/localstorage'
 
-let num = 0
 
 function SkillModule(props) {
   const [skillStatus, setSkillStatus] = useState(false)
   const [sikllMap, setSkillMap] = useState([])
   // 点击添加
   function addModules() {
+    let num = sikllMap.length
     const obj = {
       id: num++,
       skillName: '',
@@ -20,7 +22,6 @@ function SkillModule(props) {
   }
   // 输入技能名称
   function skillInputName(index, e) {
-    console.log(index, e.target.value)
     const tempMap = [...sikllMap]
     tempMap[index].skillName = e.target.value
     setSkillMap(tempMap)
@@ -37,16 +38,27 @@ function SkillModule(props) {
       setSkillStatus(!skillStatus)
     } else {
       if (sikllMap.length === 0) return false
-      for(let i = 0; i <= sikllMap.length; i++) {
+      for(let i = 0; i <= sikllMap.length - 1; i++) {
         if (sikllMap[i].skillName === '') {
           message.error('有个技能没填呢～')
           return false
-        } else {
-          console.log(sikllMap)
         }
       }
+      httpPost({
+        url: '/user/setUserResumeSkill',
+        data: {
+          uuid: localStorage.getItem('uuid', true),
+          skillModule: sikllMap
+        }
+      }).then (() => {
+        message.success('保存成功')
+        setSkillStatus(!skillStatus)
+      })
     }
   }
+  useEffect(() => {
+    setSkillMap(props.skillList)
+  }, [props.skillList])
   // 技能对象
   const skillMarks = {
     0: {
@@ -82,7 +94,7 @@ function SkillModule(props) {
                    defaultValue={item.skillName}
                    onChange={skillInputName.bind(this, index)}
                    ></Input>
-            <Slider marks={skillMarks} step={null} defaultValue={item.skillLevel} onAfterChange={changeSlider.bind(this, index)}/>
+            <Slider marks={skillMarks} disabled={!skillStatus} step={null} defaultValue={item.skillLevel} onAfterChange={changeSlider.bind(this, index)}/>
           </div>)
         }
         {

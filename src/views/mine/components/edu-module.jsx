@@ -140,7 +140,7 @@ function EduModuleFrom(props) {
   }, [])
   useEffect(() => {
     setEduModules(props.eduList)
-  })
+  }, [props.eduList])
   getFieldDecorator('eduModulesMap', { initialValue: eduModules })
   const eduModulesMap = getFieldValue('eduModulesMap')
 

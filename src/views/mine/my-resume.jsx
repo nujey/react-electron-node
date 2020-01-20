@@ -120,7 +120,7 @@ function MyResumeFrom(props) {
           </Form>
         </section>
         <EduModule eduList={basicDetail.eduModule ? basicDetail.eduModule : []}/>
-        <SkillModule />
+        <SkillModule skillList={basicDetail.skillModule ? basicDetail.skillModule : []}/>
         <ProjectModule />
         {/* <section>
           <div className="resume-item-title">
