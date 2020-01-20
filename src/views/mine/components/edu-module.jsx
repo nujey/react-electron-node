@@ -1,16 +1,16 @@
 import React from 'react'
-import moment, { fn } from 'moment'
+import moment from 'moment'
 import jsonp from '../../../utils/jsonp'
+import { httpPost } from '../../../utils/fetch'
+import localStorage from '../../../utils/localstorage'
 
 import { useState, useEffect } from 'react'
 
-import { Form, Button, Input, Icon, DatePicker, Select, AutoComplete } from 'antd'
+import { Form, Button, Input, Icon, DatePicker, Select, AutoComplete, message } from 'antd'
 
-// import "../mine.scss"
 
 const { RangePicker } = DatePicker
 
-let id = 0
 
 function EduModuleFrom(props) {
   const [eduModules, setEduModules] = useState(props.eduList)
@@ -21,6 +21,7 @@ function EduModuleFrom(props) {
   
   //  添加教育经历按钮
   function addEduModules() {
+    let id = eduModules.length
     const tempObj = {
       id: id++,
       startTime: '2018-08-01',
@@ -59,6 +60,8 @@ function EduModuleFrom(props) {
     jsonp(`https://api.restartai.com/kedis/kdict/keys/gx_${e}`, function(err, data) {
       setEduSchool(data.data)
       eduModulesMap[index].eduSchoolProvince = e
+      eduModulesMap[index].eduUniversity = ''
+      console.log(eduModulesMap[index])
       props.form.setFieldsValue({
         eduModulesMap: eduModulesMap
       })
@@ -66,7 +69,6 @@ function EduModuleFrom(props) {
   }
   // 获取焦点的时候请求大学数据
   function handleAutoFocus(index) {
-    console.log(index)
     const eduModulesMap = props.form.getFieldValue('eduModulesMap')
     jsonp(`https://api.restartai.com/kedis/kdict/keys/gx_${eduModulesMap[index].eduSchoolProvince}`, function(err, data) {
       setEduSchool(data.data)
@@ -99,7 +101,7 @@ function EduModuleFrom(props) {
   }
   // 选择学校前面的省份
   function schoolSelectBefore (item, index) {
-    return <Select defaultValue={item.eduSchoolProvince} style={{width: 80}} onChange={(e) => handleSelectEduProvince(index, e)}>
+    return <Select defaultValue={item.eduSchoolProvince} disabled={!eduStatus} style={{width: 80}} onChange={(e) => handleSelectEduProvince(index, e)}>
       {
         eduProvinceSchool.map(item => <Select.Option value={item} key={index}>{item}</Select.Option>)
       }
@@ -111,7 +113,20 @@ function EduModuleFrom(props) {
       setEduStatus(!eduStatus)
     } else {
       const arr = props.form.getFieldValue('eduModulesMap')
-      console.log(arr)
+      const { validateFields } = props.form
+      validateFields((errs, values) => {
+        if(errs) return false
+        httpPost({
+          url: '/user/setUserResumeEdu',
+          data: {
+            uuid: localStorage.getItem('uuid', true),
+            eduModule: arr
+          }
+        }).then(res => {
+          message.success('保存成功')
+          setEduStatus(!eduStatus)
+        })
+      })
     }
   }
   // 获取学校的省份
@@ -123,7 +138,9 @@ function EduModuleFrom(props) {
   useEffect(() => {
     getProvince()
   }, [])
-
+  useEffect(() => {
+    setEduModules(props.eduList)
+  })
   getFieldDecorator('eduModulesMap', { initialValue: eduModules })
   const eduModulesMap = getFieldValue('eduModulesMap')
 
@@ -135,13 +152,13 @@ function EduModuleFrom(props) {
       </div>
       {
         eduModulesMap.map((item, index) =>
-          <Form style={{display: 'flex', alignItems: 'center', margin: '10px 0'}} layout="inline" key={item.id}>
+          <Form style={{display: 'flex', alignItems: 'center', margin: '10px 0'}} layout="inline" key={item.id} onSubmit={handleEduSave}>
             <Form.Item label="就读时间">
               {getFieldDecorator(`eduTime${item.id}`, {
                 initialValue: [moment(item.startTime), moment(item.endTime)],
                 rules: [{ required: true, message: '请选择学习时间段' }]
               })(
-                <RangePicker format="YYYY-MM-DD" onChange={handleTimeChange.bind(this, index)}/>
+                <RangePicker disabled={!eduStatus} format="YYYY-MM-DD" onChange={handleTimeChange.bind(this, index)}/>
               )}
             </Form.Item>
             <Form.Item label="学历">
@@ -149,7 +166,7 @@ function EduModuleFrom(props) {
                 initialValue: item.eduRecord,
                 rules: [{ required: true, message: '请选择学历' }]
               })(
-                <Select style={{ width: 120 }} onChange={handleSelectEduRecord.bind(this, index)}>
+                <Select disabled={!eduStatus} style={{ width: 120 }} onChange={handleSelectEduRecord.bind(this, index)}>
                   <Select.Option value="0">高中</Select.Option>
                   <Select.Option value="1">大专</Select.Option>
                   <Select.Option value="2">本科</Select.Option>
@@ -165,12 +182,15 @@ function EduModuleFrom(props) {
               })(<Input.Group compact style={{width: 300}}>
                 {schoolSelectBefore(item, index)}
                 <AutoComplete dataSource={eduSchool}
+                  disabled={!eduStatus}
                   style={{ width: 220 }}
+                  value={item.eduUniversity}
+                  defaultValue={item.eduUniversity}
                   placeholder="请输入大学名称"
                   onFocus={handleAutoFocus.bind(this, index)}
                   onChange={changeAutoComplete.bind(this, index)}
                   onSearch={handleInputEdu.bind(this, index)} />
-                </Input.Group>)}           
+                </Input.Group>)}       
               {
                 // <Icon className="item-delete-button" type="minus-circle-o" onClick={handleRemoveEduItem.bind(this, index)}/>
                 eduStatus ? <span style={{marginLeft: 10, display: 'inline'}}>
@@ -220,7 +240,7 @@ class EduModuleFrom111 extends React.Component {
   //  添加教育经历按钮
   addEduModules = () => {
     const tempObj = {
-      id: id++,
+      id: 0,
       startTime: '2018-08-01',
       endTime: '2020-08-01',
       eduRecord: '2',
@@ -243,7 +263,6 @@ class EduModuleFrom111 extends React.Component {
     form.setFieldsValue({
       eduModulesMap: temp.filter((key, i) => i !== index)
     })
-    console.log(temp)
   }
   handleInputEdu = (e, index) => {
     const { form } = this.props

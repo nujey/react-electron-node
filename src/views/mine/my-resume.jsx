@@ -21,7 +21,9 @@ function MyResumeFrom(props) {
       url: '/user/getUserResume',
       data: { uuid: localStorage.getItem('uuid', true) }
     }).then(res => {
-      console.log(res)
+      setBasicDetail(prev => {
+        return Object.assign({}, prev, res)
+      })
     })
   }, [])
   function handleBasicSubmit() {
@@ -117,10 +119,9 @@ function MyResumeFrom(props) {
             </Form.Item>
           </Form>
         </section>
-        
-        <EduModule eduList={[]}/>
+        <EduModule eduList={basicDetail.eduModule ? basicDetail.eduModule : []}/>
         <SkillModule />
-        <ProjectModule arr={[1, 2, 3]}/>
+        <ProjectModule />
         {/* <section>
           <div className="resume-item-title">
             <span>项目经验</span>
