@@ -100,7 +100,7 @@ function ProjectForm(props) {
       {
         projectMap.map((item, index) => 
           <div className="project-item">
-            <Form key={item.id} className="project-form-item">
+            <Form key={item.id} className="project-form-item" style={{width: !projectStatus ? '100%' : '90%'}}>
               <Form.Item label="项目时间" style={{marginRight: 20}}>
                 {
                   getFieldDecorator(`projectTime${item.id}`, {
