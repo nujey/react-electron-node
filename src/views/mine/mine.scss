@@ -77,15 +77,27 @@
       }
     }
     .project-module {
-      .project-form-item {
+      .project-item {
         margin: 12px 0;
+        padding: 10px;
+        display: flex;
+        border: 1px dashed rgba($color: #38adff, $alpha: .3);
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 4px;
+        transition: all 1s;
+      }
+      .project-item:hover {
+        border: 1px dashed rgba($color: #38adff, $alpha: 1);
+      }
+      .project-form-item {
+        width: 90%;
         display: flex;
         flex-wrap: wrap;
-        border-top: 1px dashed #38adff
       }
-      & > .project-form-item:nth-child(2) {
-        border-top: none;
-      }
+      // & > .project-item:nth-child(2) {
+      //   border: none;
+      // }
     }
     .no-data {
       margin: 20px 0;

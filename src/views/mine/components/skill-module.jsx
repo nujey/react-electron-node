@@ -7,39 +7,44 @@ import localStorage from '../../../utils/localstorage'
 
 function SkillModule(props) {
   const [skillStatus, setSkillStatus] = useState(false)
-  const [sikllMap, setSkillMap] = useState([])
+  const [skillMap, setSkillMap] = useState([])
   // 点击添加
   function addModules() {
-    let num = sikllMap.length
+    let num = skillMap.length
     const obj = {
       id: num++,
       skillName: '',
       skillLevel: 0
     }
-    const tempMap = [...sikllMap]
+    const tempMap = [...skillMap]
     tempMap.push(obj)
     setSkillMap(tempMap)
   }
   // 输入技能名称
   function skillInputName(index, e) {
-    const tempMap = [...sikllMap]
+    const tempMap = [...skillMap]
     tempMap[index].skillName = e.target.value
     setSkillMap(tempMap)
   }
   // 滑动块滑动的时候
   function changeSlider(index, value) {
-    const tempMap = [...sikllMap]
+    const tempMap = [...skillMap]
     tempMap[index].skillLevel = value
     setSkillMap(tempMap)
   }
-  // 保存教育模块
+  // 删除模块
+  function handleRemoveEduItem(index) {
+    const tempMap = [...skillMap]
+    tempMap.splice(index, 1)
+    setSkillMap(tempMap)
+  }
+  // 保存模块
   function handleSave() {
     if (!skillStatus) {
       setSkillStatus(!skillStatus)
     } else {
-      if (sikllMap.length === 0) return false
-      for(let i = 0; i <= sikllMap.length - 1; i++) {
-        if (sikllMap[i].skillName === '') {
+      for(let i = 0; i <= skillMap.length - 1; i++) {
+        if (skillMap[i].skillName === '') {
           message.error('有个技能没填呢～')
           return false
         }
@@ -48,7 +53,7 @@ function SkillModule(props) {
         url: '/user/setUserResumeSkill',
         data: {
           uuid: localStorage.getItem('uuid', true),
-          skillModule: sikllMap
+          skillModule: skillMap
         }
       }).then (() => {
         message.success('保存成功')
@@ -86,7 +91,7 @@ function SkillModule(props) {
       </div>
       <div className="skill-module">
         {
-          sikllMap.map((item, index) => <div className="skill-item" key={item.id} style={{padding: '12px 0px'}}>
+          skillMap.map((item, index) => <div className="skill-item" key={item.id} style={{padding: '12px 0px'}}>
             <Input placeholder="请输入技能名称"
                    allowClear
                    disabled={skillStatus ? false : true}
@@ -95,10 +100,15 @@ function SkillModule(props) {
                    onChange={skillInputName.bind(this, index)}
                    ></Input>
             <Slider marks={skillMarks} disabled={!skillStatus} step={null} defaultValue={item.skillLevel} onAfterChange={changeSlider.bind(this, index)}/>
+            {
+              skillStatus ? <span style={{marginLeft: 10, display: 'inline'}}>
+                <Button type="dashed" icon="minus-circle-o" onClick={handleRemoveEduItem.bind(this, index)}></Button>
+              </span> : ''
+            }
           </div>)
         }
         {
-          (!skillStatus && sikllMap.length === 0) && <p className="no-data">暂无数据</p>
+          (!skillStatus && skillMap.length === 0) && <p className="no-data">暂无数据</p>
         }
       </div>
       {
