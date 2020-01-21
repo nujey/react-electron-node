@@ -6,6 +6,7 @@ import "./home.scss"
 
 import history from '../../utils/history'
 import { httpGet } from '../../utils/fetch'
+import localStorage from '../../utils/localstorage'
 
 class Home extends React.Component {
   render() {
@@ -32,6 +33,9 @@ class LoginFormTemplate extends React.Component {
         return false
       }
       httpGet({url: `/user/login?username=${values.username}&password=${values.password}` }).then(res => {
+        localStorage.setItem('uuid', res.uuid)
+        localStorage.setItem('name', res.name)
+        localStorage.setItem('token', res.token)
         history.push({ pathname: '/index/work-list' })
       }).catch(err => {
         message.error(err.message, 3)
