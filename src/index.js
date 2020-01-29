@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import history from './utils/history'
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { todoApp } from './store/reducer';
+
+let store = createStore(todoApp)
 
 ReactDOM.render(
   <Router history={history}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Router>
   , document.getElementById('root'));
 

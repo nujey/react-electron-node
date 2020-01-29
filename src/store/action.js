@@ -1,3 +1,4 @@
+let nextTodoId = 0
 /*  action类型 */
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
@@ -14,14 +15,14 @@ export const VisibilityFilters = {
  * action创建函数
  */
 export function addTodo(text) {
-  return { type: ADD_TODO, text }
+  return { id: nextTodoId++, type: ADD_TODO, text }
 }
 
 export function toggleTodo(index) {
   return { type: TOGGLE_TODO, index }
 }
 
-export function setVisibilityFilter(filter) {
+export const setVisibilityFilter = filter => {
   return { type: SET_VISIBILITY_FILTER, filter}
 }
 
