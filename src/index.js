@@ -8,7 +8,7 @@ import history from './utils/history'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { todoApp } from './store/reducer';
+import { todoApp } from './store/todolist/reducer';
 
 let store = createStore(todoApp)
 

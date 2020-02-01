@@ -9,6 +9,7 @@ const initialState = {
 }
 
 function visibilityFilter(state = SHOW_ALL, action) {
+  console.log('reducer1')  
   switch(action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter
@@ -18,7 +19,7 @@ function visibilityFilter(state = SHOW_ALL, action) {
 }
 
 function todos(state = [], action) {
-  console.log(action)
+  console.log('reducer2')
   switch (action.type) {
     case ADD_TODO:
       return [
