@@ -7,7 +7,9 @@ import Prim from '../views/home/404'
 import HomeIndex from '../views/home/home-index'
 import Register from '../views/home/register'
 // import Study from '../views/test-study/a11y-study'
-const Study = lazy(() => import('../views/test-study/context'))
+// const Study = lazy(() => import('../views/test-study/context'))
+// const Study = lazy(() => import("../views/test-study/error-boundaries"))
+const Study = lazy(() => import("../views/test-study/refs"))
 
 class RouteConfig extends React.Component {
   render() {
