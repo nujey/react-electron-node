@@ -157,6 +157,7 @@
     ]
   },
   "devDependencies": {
+    "happypack": "^5.0.1",
     "redux-devtools": "^3.5.0"
   }
 }
