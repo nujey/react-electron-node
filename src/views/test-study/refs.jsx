@@ -50,4 +50,24 @@ const FancyButton = React.forwardRef((props, ref) => {
   console.log(props, ref)
   return <button ref={ref} className="fancy-button">{props.children}</button>
 })
+
+
+
+const FancyButton = React.forwardRef((props, ref) => {
+  return <button ref={ref} >{props.name}</button>
+})
+
+class test2 extends React.Component {
+  constructor() {
+    super(props)
+    this.fanRef = React.createRef()
+  }
+  render() {
+    return(
+      <div>
+        <FancyButton name="fancy" ref={this.fanRef}/>
+      </div>
+    )
+  }
+}
 export default Study
