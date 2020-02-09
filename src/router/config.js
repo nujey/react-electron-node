@@ -12,7 +12,8 @@ import Register from '../views/home/register'
 
 // const Study = lazy(() => import("../views/test-study/refs"))
 // const Study = lazy(() => import("../views/test-study/hoc"))
-const Study = lazy(() => import("../views/test-study/mount"))
+// const Study = lazy(() => import("../views/test-study/mount"))
+const Study = lazy(() => import("../views/test-study/father-child"))
 
 class RouteConfig extends React.Component {
   render() {
