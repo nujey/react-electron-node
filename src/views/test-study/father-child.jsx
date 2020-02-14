@@ -20,13 +20,12 @@ class Child extends React.Component {
       {
         this.context.contextObj.map((item, index) => <span key={index}>我是序号{item}</span>)
       }
-      <p onClick={this.handle.bind(this)}>子组件</p>
+      <p onClick={this.handle.bind(this)}>子组件{this.props.children}</p>
     </>
   }
 }
 
 function Childs() {
-
   return (
     <ThemeContext.Consumer>
       {(context) => {
@@ -39,7 +38,6 @@ function Childs() {
 class Study extends React.Component {
   constructor() {
     super()
-    console.log(performance.now())
     this.state = {
       contextObj: [1, 2, 3, 4],
       handleClick: this.handleClick
@@ -60,7 +58,7 @@ class Study extends React.Component {
   render() {
     return <div>
       <ThemeContext.Provider value={this.state}>
-        <Child t={performance.now()}  handle={this.handleClick}/>
+        <Child t={performance.now()}  handle={this.handleClick}>哈哈哈</Child>
         <Childs />
       </ThemeContext.Provider>
     </div>
