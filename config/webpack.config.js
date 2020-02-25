@@ -27,6 +27,9 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const eslint = require('eslint');
 
+const HappyPack = require('happypack')
+const os = require('os')
+
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
@@ -50,6 +53,9 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+
+// 添加多个子进程
+let happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -201,6 +207,14 @@ module.exports = function(webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
+    // externals: {
+    //   "react": 'react',
+    //   "redux": 'redux',
+    //   "react-dom": 'redux-dom',
+    //   "antd": 'antd',
+    //   "koa": 'koa',
+    //   "koa-router": 'koa-router'
+    // },
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
@@ -376,6 +390,7 @@ module.exports = function(webpackEnv) {
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
+              // include: path.resolve(__dirname, 'src'),
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
@@ -544,6 +559,11 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
+      new HappyPack({
+        id: 'balel',
+        loaders: ['babel-loader?cacheDirectory=true'],
+        threadPool: happyThreadPool
+      }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358
