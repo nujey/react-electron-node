@@ -1,0 +1,6 @@
+[submodule "node-react"]
+	path = node-react
+	url = https://github.com/nujey/node-react.git
+[submodule "es6-vue-react"]
+	path = es6-vue-react
+	url = https://github.com/nujey/es6-vue-react.git
