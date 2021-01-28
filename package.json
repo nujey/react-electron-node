@@ -29,7 +29,7 @@
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "5.1.0",
-    "electron": "^6.0.12",
+    "electron": "^9.4.0",
     "eslint": "^6.1.0",
     "eslint-config-react-app": "^5.0.2",
     "eslint-loader": "3.0.2",
